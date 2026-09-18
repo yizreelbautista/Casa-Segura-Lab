@@ -1,9 +1,0 @@
-CASA SEGURA — PASILLO / APERTURA LIBRE
-=======================================
-JavaScript: OK
-Wall engine soporta passage: OK
-Navigation soporta passage: OK
-Passage sin dispositivo: OK
-Botón Apertura libre: OK
-Solo Pasillo puede crear: OK
-3D elimina muro completo: OK
