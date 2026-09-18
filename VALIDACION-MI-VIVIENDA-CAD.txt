@@ -1,0 +1,8 @@
+CASA SEGURA — MI VIVIENDA CAD
+=============================
+JavaScript: OK
+Imagen estática eliminada: OK
+SVG CAD Mi vivienda: OK
+Botón editar plano: OK
+Editor CAD: OK
+Panel 3D: OK

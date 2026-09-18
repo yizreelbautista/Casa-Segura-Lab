@@ -1,0 +1,9 @@
+CASA SEGURA — PUERTAS INTERIORES + RUTA REAL
+=============================================
+JavaScript: OK
+Pared física única por línea: OK
+Huecos interiores compartidos: OK
+Mi vivienda usa muros físicos únicos: OK
+Recorrido mediante grafo de puertas: OK
+Estructuras separadas vía Exterior: OK
+Recorrido conserva perspectiva: OK

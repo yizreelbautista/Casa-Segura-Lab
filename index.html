@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Casa Segura: centro de monitoreo y protección residencial.">
+  <title>Casa Segura — Versión Final</title>
+  
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/cad.css">
+
+</head>
+<body>
+
+
+  <!-- SELECTOR DE VIVIENDA / PERFIL -->
+  <section id="profile-screen" class="profile-screen">
+    <div class="profile-shell">
+      <div class="profile-brand">
+        <span class="brand-mark">CS</span>
+        <div><strong>Casa Segura</strong><small>Selecciona la vivienda antes de entrar</small></div>
+      </div>
+      <div class="profile-heading">
+        <p class="eyebrow">Viviendas independientes</p>
+        <h1 id="profile-title">¿Cómo quieres comenzar?</h1>
+        <p id="profile-copy">Demo y Casa principal se guardan por separado.</p>
+      </div>
+      <div id="profile-content" class="profile-content"></div>
+      <small class="profile-foot">Cambiar una vivienda no modifica la otra.</small>
+    </div>
+  </section>
+
+  <!-- ACCESO -->
+  <section id="access-screen" class="access-screen" hidden>
+    <header class="access-header">
+      <div class="brand">
+        <span class="brand-mark">CS</span>
+        <span><strong>Casa Segura</strong><small>Protección residencial</small></span>
+      </div>
+      <div class="plain-status"><i class="dot dot--ok"></i><span>Sistema de protección residencial</span></div>
+    </header>
+
+    <div class="access-layout">
+      <div class="access-copy">
+        <p class="eyebrow">Centro de protección residencial</p>
+        <h1>Seguridad clara.<br>Control sin complicaciones.</h1>
+        <p class="lead">
+          Supervisa accesos, cámaras y eventos de seguridad desde una interfaz clara,
+          diseñada para mantener el control de la vivienda en todo momento.
+        </p>
+        <div class="access-facts access-facts--public">
+          <div><strong>24/7</strong><span>Monitoreo de accesos</span></div>
+          <div><strong>ALERTA</strong><span>Respuesta ante emergencias</span></div>
+          <div><strong>CONTROL</strong><span>Historial y dispositivos</span></div>
+        </div>
+      </div>
+
+      <form id="access-form" class="card access-card" novalidate>
+        <p class="eyebrow">Acceso protegido</p>
+        <h2>Entrar al sistema</h2>
+        <p class="muted">Ingresa tu PIN para abrir el centro de monitoreo.</p>
+
+        <label for="access-pin">PIN de acceso</label>
+        <div class="password-field">
+          <input id="access-pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+          <button class="password-toggle" type="button" data-toggle-password="access-pin" aria-label="Mostrar u ocultar PIN">◉</button>
+        </div>
+        <p id="access-message" class="form-message" aria-live="polite"></p>
+
+        <button class="btn btn--primary btn--block" type="submit">Abrir Casa Segura</button>
+        <small class="access-hint">PIN inicial de operación: <strong>1234</strong></small>
+      </form>
+    </div>
+  </section>
+
+  <!-- APLICACIÓN -->
+  <div id="app-shell" class="app-shell" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand brand">
+        <span class="brand-mark">CS</span>
+        <span><strong>Casa Segura</strong><small>Centro de vigilancia</small></span>
+      </div>
+
+      <nav class="nav" aria-label="Menú principal">
+        <button class="nav-link is-active" type="button" data-view="dashboard"><span>▦</span>Panel</button>
+        <button class="nav-link" type="button" data-view="home"><span>⌂</span>Mi vivienda</button>
+        <button class="nav-link" data-view="cad"><span>⌗</span>Editor CAD</button>
+        <button class="nav-link" type="button" data-view="devices"><span>◌</span>Dispositivos</button>
+        <button class="nav-link" type="button" data-view="cameras"><span>◉</span>Cámaras</button>
+        <button class="nav-link" type="button" data-view="history"><span>☷</span>Historial</button>
+        <button class="nav-link" type="button" data-view="database"><span>▤</span>Base de datos</button>
+        <button class="nav-link" type="button" data-view="settings"><span>⚙</span>Configuración</button>
+        <button class="nav-link" type="button" data-view="help"><span>?</span>Ayuda</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="plain-status sidebar-state">
+          <i class="dot dot--ok"></i>
+          <span><strong id="sidebar-mode-title">OFFLINE</strong><small id="sidebar-mode-copy">Operación independiente</small></span>
+        </div>
+        <button id="logout-button" class="btn btn--secondary btn--block" type="button">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="menu-toggle" class="icon-btn mobile-menu" type="button" aria-label="Abrir menú">☰</button>
+          <div>
+            <p class="eyebrow">Centro de monitoreo</p>
+            <h2 id="view-title">Panel</h2>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button id="profile-switch-button" class="profile-switch-button" type="button" title="Cambiar vivienda">
+            <span>◇</span><b>Demo</b>
+          </button>
+          <div id="top-system-status" class="plain-status">
+            <i class="dot"></i><span>Sistema desactivado</span>
+          </div>
+          <div id="network-mode-status" class="plain-status network-mode-status">
+            <i class="dot"></i><span>OFFLINE</span>
+          </div>
+          <button id="main-online-toggle" class="mode-toggle-button" type="button">
+            <i class="mode-toggle-led"></i>
+            <span>Activar online</span>
+          </button>
+          <div id="active-camera-status" class="plain-status active-camera-status" hidden>
+            <i class="dot dot--danger"></i><span>0 cámaras activas</span>
+          </div>
+          <time id="current-time" class="clock">--:--:--</time>
+          <button id="notifications-button" class="icon-btn bell-btn" type="button" aria-label="Abrir notificaciones">♢<b id="notification-count">0</b></button>
+        </div>
+      </header>
+
+      <!-- PANEL -->
+      <main class="view is-active" data-view-panel="dashboard">
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">Resumen operativo</p>
+            <h1>Panel principal</h1>
+            <p>Consulta el estado de la vivienda y ejecuta únicamente las acciones necesarias.</p>
+          </div>
+        </section>
+
+        <section id="system-banner" class="system-banner">
+          <div class="system-banner__state">
+            <i class="system-orb"></i>
+            <div>
+              <small>Estado de protección</small>
+              <strong id="general-status-text">DESACTIVADO</strong>
+              <p id="protection-text">La vivienda no está armada.</p>
+            </div>
+          </div>
+
+          <div class="arm-box">
+            <label for="pin-input">PIN para activar o desactivar</label>
+            <div class="arm-row">
+              <div class="password-field">
+                <input id="pin-input" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+                <button class="password-toggle" type="button" data-toggle-password="pin-input" aria-label="Mostrar u ocultar PIN">◉</button>
+              </div>
+              <button id="system-button" class="btn btn--primary" type="button">Activar protección</button>
+            </div>
+            <p id="pin-message" class="form-message" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="metrics">
+          <article>
+            <span>Accesos seguros</span>
+            <strong id="secure-count">0 de 0</strong>
+            <small>Puertas y ventanas cerradas</small>
+          </article>
+          <article>
+            <span>Dispositivos</span>
+            <strong id="device-count">0</strong>
+            <small>Elementos configurados</small>
+          </article>
+          <article>
+            <span>Cámaras</span>
+            <strong id="camera-count">0</strong>
+            <small>Fuentes registradas</small>
+          </article>
+          <article>
+            <span>Último evento</span>
+            <strong id="last-event-text">Sistema iniciado</strong>
+            <small id="last-event-time">Ahora</small>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Vivienda activa</p>
+                <h3 id="home-name-title">Mi vivienda</h3>
+              </div>
+              <div id="home-ready-state" class="plain-status"><i class="dot dot--ok"></i><span>Perímetro seguro</span></div>
+            </div>
+            <p class="muted compact">Vista de vigilancia de la vivienda. Las puertas y ventanas cambian visualmente cuando se abren o cierran; los indicadores muestran verde, amarillo o rojo según el estado del sistema.</p>
+
+            <div class="security-house-layout">
+              <section class="security-house-main">
+                <div class="security-house-tabs" role="tablist" aria-label="Vista de vivienda">
+                  <button id="sim-view-interior" class="security-tab is-active" type="button">⌂ Interior</button>
+                  <button id="sim-view-exterior" class="security-tab" type="button">⌂ Exterior</button>
+                  <button id="sim-view-walk" class="security-tab" type="button">⌖ Recorrido</button>
+                </div>
+
+                <div id="security-house-scene" class="security-house-scene" aria-label="Vivienda interactiva">
+                  <div id="security-house-transform" class="security-house-transform">
+
+                    <div id="security-house-image" class="security-house-image house-floorplan" aria-label="Plano interactivo de la vivienda">
+                      <div class="plan-shell">
+                        <section class="plan-room plan-room--bed1" data-plan-room="room-bed1">
+                          <div class="plan-room-head">
+                            <strong class="plan-room-name">Recámara 1</strong>
+                            <small>Habitación</small>
+                          </div>
+                          <div class="plan-bed"><i></i><i></i></div>
+                          <div class="plan-nightstand plan-nightstand--a"></div>
+                          <div class="plan-nightstand plan-nightstand--b"></div>
+                        </section>
+
+                        <section class="plan-room plan-room--bath" data-plan-room="room-bath">
+                          <div class="plan-room-head">
+                            <strong class="plan-room-name">Baño</strong>
+                            <small>Servicio</small>
+                          </div>
+                          <div class="plan-shower"></div>
+                          <div class="plan-toilet"></div>
+                          <div class="plan-sink"></div>
+                        </section>
+
+                        <section class="plan-room plan-room--bed2" data-plan-room="room-bed2">
+                          <div class="plan-room-head">
+                            <strong class="plan-room-name">Recámara 2</strong>
+                            <small>Habitación</small>
+                          </div>
+                          <div class="plan-bed"><i></i><i></i></div>
+                          <div class="plan-nightstand plan-nightstand--a"></div>
+                          <div class="plan-nightstand plan-nightstand--b"></div>
+                        </section>
+
+                        <section class="plan-room plan-room--living" data-plan-room="room-sala">
+                          <div class="plan-room-head">
+                            <strong class="plan-room-name">Sala / Entrada</strong>
+                            <small>Área social</small>
+                          </div>
+                          <div class="plan-sofa"></div>
+                          <div class="plan-coffee-table"></div>
+                          <div class="plan-tv"></div>
+                        </section>
+
+                        <section class="plan-room plan-room--kitchen" data-plan-room="room-kitchen">
+                          <div class="plan-room-head">
+                            <strong class="plan-room-name">Cocina</strong>
+                            <small>Área de cocina</small>
+                          </div>
+                          <div class="plan-counter plan-counter--top"></div>
+                          <div class="plan-counter plan-counter--right"></div>
+                          <div class="plan-island"></div>
+                          <div class="plan-stove"></div>
+                        </section>
+                      </div>
+                      <div class="plan-caption">
+                        <strong>Plano base editable</strong>
+                        <span>2 recámaras · sala · cocina · baño</span>
+                      </div>
+                    </div>
+<div id="house-exterior-layer" class="house-exterior-layer" hidden>
+                      <div class="exterior-sky"></div>
+                      <div class="exterior-house">
+                        <div class="exterior-roof"></div>
+                        <div class="exterior-wall">
+                          <div class="exterior-window exterior-window--left"><i></i><i></i></div>
+                          <div class="exterior-door"></div>
+                          <div class="exterior-window exterior-window--right"><i></i><i></i></div>
+                        </div>
+                        <div class="exterior-garden"></div>
+                      </div>
+                    </div>
+
+                    <div id="security-device-layer" class="security-device-layer"></div>
+
+                    <div id="house-person" class="house-person" aria-hidden="true">
+                      <span class="person-head"></span>
+                      <span class="person-body"></span>
+                      <span class="person-leg person-leg--l"></span>
+                      <span class="person-leg person-leg--r"></span>
+                    </div>
+                  </div>
+
+                  <div class="security-house-legend">
+                    <span><i class="legend-dot legend-dot--ok"></i>Cerrado</span>
+                    <span><i class="legend-dot legend-dot--warn"></i>Abierto</span>
+                    <span><i class="legend-dot legend-dot--danger"></i>Alarma</span>
+                  </div>
+                </div>
+
+                <div id="walk-controls" class="walk-controls" hidden>
+                  <div>
+                    <p class="eyebrow">Recorrido de prueba</p>
+                    <strong id="sim-person-location">Exterior</strong>
+                  </div>
+                  <div class="walk-actions" id="walk-actions">
+                    <button id="sim-enter-house" class="btn btn--primary" type="button">Entrar a vivienda</button>
+                    <div id="walk-dynamic-destinations" class="walk-dynamic-destinations"></div>
+                    <button id="sim-walk-exterior" type="button" class="walk-exterior-button">Exterior</button>
+                  </div>
+                </div>
+              </section>
+
+              <aside class="security-house-side">
+                <section class="house-control-section">
+                  <p class="eyebrow">Vista de la casa</p>
+                  <h3>Control de visualización</h3>
+                  <p class="muted compact">Gira únicamente hacia los lados, acerca o aleja y restablece la vista.</p>
+                  <div class="house-control-grid">
+                    <button id="sim-rotate-left" type="button"><strong>‹</strong><span>Girar izquierda</span></button>
+                    <button id="sim-rotate-right" type="button"><strong>›</strong><span>Girar derecha</span></button>
+                    <button id="sim-zoom-in" type="button"><strong>⌕</strong><span>Acercar</span></button>
+                    <button id="sim-zoom-out" type="button"><strong>⊖</strong><span>Alejar</span></button>
+                  </div>
+                  <button id="sim-reset-view" class="house-reset-view" type="button">↻ Restablecer vista</button>
+                </section>
+
+                <section class="selected-device-panel">
+                  <p class="eyebrow">Elemento seleccionado</p>
+                  <div class="selected-device-preview">
+                    <div id="selected-device-icon" class="selected-device-icon">⌂</div>
+                    <div>
+                      <strong id="house-selected-name">Mi vivienda</strong>
+                      <span id="house-selected-state" class="selected-state selected-state--safe">Sistema listo</span>
+                    </div>
+                  </div>
+                  <p id="house-selected-detail" class="selected-device-detail">Selecciona una puerta, ventana o cámara dentro de la vivienda.</p>
+                  <button id="house-selected-action" class="btn btn--secondary btn--block" type="button" hidden>Acción</button>
+                </section>
+              </aside>
+            </div>
+
+            <section class="sensor-status-section">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Estado de sensores</p>
+                  <h3>Accesos de puertas y ventanas</h3>
+                </div>
+                <div class="sensor-status-legend">
+                  <span><i class="legend-dot legend-dot--ok"></i>Cerrado</span>
+                  <span><i class="legend-dot legend-dot--warn"></i>Abierto</span>
+                  <span><i class="legend-dot legend-dot--danger"></i>Alarma</span>
+                </div>
+              </div>
+              <div id="sensor-status-grid" class="sensor-status-grid"></div>
+            </section>
+
+            <div class="card-actions">
+              <button class="btn btn--secondary" type="button" data-go="home">Configurar vivienda</button>
+              <button class="text-action" type="button" data-help-topic="vivienda">¿Cómo funciona?</button>
+            </div>
+          </article>
+
+          <div class="side-stack">
+            <article id="alarm-card" class="card">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Emergencias</p>
+                  <h3>Alarma</h3>
+                </div>
+                <div id="alarm-state-label" class="plain-status"><i class="dot"></i><span>En silencio</span></div>
+              </div>
+              <p id="alarm-description" class="muted compact">La alarma se activa por un acceso armado o por el botón de pánico.</p>
+              <button id="silence-button" class="btn btn--secondary btn--block" type="button">Gestionar emergencia</button>
+            </article>
+
+            <article class="card surveillance-card">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Vigilancia</p>
+                  <h3 id="agency-title">Canal disponible</h3>
+                </div>
+                <span id="agency-state" class="state-text">En espera</span>
+              </div>
+              <p id="agency-description" class="muted compact">El aviso de vigilancia es una simulación académica.</p>
+              <div class="progress-line">
+                <progress id="agency-progress" value="0" max="100"></progress>
+                <span id="agency-progress-text">0%</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="card recent-card">
+          <div class="section-heading">
+            <div><p class="eyebrow">Actividad reciente</p><h3>Últimos eventos</h3></div>
+            <button class="text-action" type="button" data-go="history">Abrir historial</button>
+          </div>
+          <ul id="recent-event-list" class="event-list event-list--compact"></ul>
+        </section>
+      </main>
+
+      <!-- MI VIVIENDA -->
+      <main class="view" data-view-panel="home">
+        <section class="page-heading page-heading--actions">
+          <div>
+            <p class="eyebrow">Configuración residencial</p>
+            <h1>Mi vivienda</h1>
+            <p>La vivienda actual es totalmente editable. Puedes agregar o eliminar habitaciones, puertas, ventanas, cámaras y sensores en cualquier momento.</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn--primary" type="button" data-add="room">Agregar habitación</button>
+          </div>
+        </section>
+
+        <section class="home-mode-strip">
+          <div class="home-mode-copy">
+            <p class="eyebrow">Vivienda activa</p>
+            <strong id="active-home-mode-title">Mi vivienda</strong>
+            <span id="active-home-mode-copy">Configuración residencial editable.</span>
+          </div>
+          <div class="home-mode-state is-user" id="active-home-mode-state">ACTIVA</div>
+        </section>
+        <section class="card visual-plan-card">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Visualización</p>
+              <h3>Plano visual de la vivienda</h3>
+            </div>
+            <button class="info-btn" type="button" data-help-topic="visual" aria-label="Ayuda sobre la visualización">i</button>
+          </div>
+          <p class="muted compact">La interfaz visual representa la vivienda activa y sus dispositivos configurados. Puedes modificar la cantidad de accesos y sensores desde esta misma sección.</p>
+          <div class="home-cad-live">
+            <div class="home-cad-toolbar">
+              <div>
+                <span class="home-cad-badge">PLANO CAD ACTIVO</span>
+                <small>Generado desde la misma configuración arquitectónica del panel central.</small>
+              </div>
+              <button id="home-open-cad" class="btn btn--secondary" type="button">Editar plano</button>
+            </div>
+            <div class="home-cad-stage">
+              <svg id="home-cad-preview" viewBox="0 0 1000 650" aria-label="Plano arquitectónico generado por Casa Segura"></svg>
+              <div class="home-cad-legend">
+                <span><i class="door"></i>Puerta</span>
+                <span><i class="window"></i>Ventana</span>
+                <span><i class="camera"></i>Cámara</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-layout">
+          <aside class="card tools-panel">
+            <div class="section-heading">
+              <div><p class="eyebrow">Configuración</p><h3>Agregar elementos</h3></div>
+              <button class="info-btn" type="button" data-help-topic="vivienda" aria-label="Ayuda sobre vivienda">i</button>
+            </div>
+
+            <p class="helper-copy">Primero crea habitaciones. Después agrega los dispositivos que pertenecen a cada espacio.</p>
+
+            <button class="tool-action" data-add="room" type="button"><span>□</span><div><strong>Nueva habitación</strong><small>Crear un espacio de la vivienda</small></div></button>
+            <button class="tool-action" data-add="door" type="button"><span>▯</span><div><strong>Agregar puerta</strong><small>Sensor de apertura</small></div></button>
+            <button class="tool-action" data-add="window" type="button"><span>▭</span><div><strong>Agregar ventana</strong><small>Sensor de apertura</small></div></button>
+            <button class="tool-action" data-add="motion" type="button"><span>◌</span><div><strong>Sensor de movimiento</strong><small>Detección interior simulada</small></div></button>
+            <button class="tool-action" data-add="camera" type="button"><span>◉</span><div><strong>Agregar cámara</strong><small>Webcam o fuente IP futura</small></div></button>
+
+            <div class="field-group">
+              <label for="home-name-input">Nombre de la vivienda</label>
+              <input id="home-name-input" type="text" maxlength="50">
+              <button id="save-home-name" class="btn btn--secondary btn--block" type="button">Guardar nombre</button>
+            </div>
+            <div class="field-group">
+              <p class="eyebrow">Reglas de configuración</p>
+              <p class="helper-copy">Puedes agregar o eliminar tantas habitaciones, puertas, ventanas, cámaras y sensores como necesites.</p>
+            </div>
+          </aside>
+
+          <section class="card home-editor-card">
+            <div class="section-heading">
+              <div><p class="eyebrow">Modelo de vivienda</p><h3 id="editor-home-name">Mi vivienda</h3></div>
+              <span class="state-text">Editable</span>
+            </div>
+            <p class="muted compact">Los accesos tienen una acción explícita para simular apertura o cierre; los textos informativos no actúan como botones.</p>
+            <div id="home-editor" class="home-editor"></div>
+          </section>
+        </section>
+      </main>
+
+      <!-- DISPOSITIVOS -->
+      <main class="view" data-view-panel="devices">
+        <section class="page-heading">
+          <div><p class="eyebrow">Inventario técnico</p><h1>Dispositivos</h1><p>Consulta el tipo, ubicación y estado de cada elemento asociado a la vivienda.</p></div>
+        </section>
+        <section class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Nombre</th><th>Tipo</th><th>Ubicación</th><th>Estado</th><th>Acciones</th></tr></thead>
+              <tbody id="device-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <!-- CÁMARAS -->
+      <main class="view" data-view-panel="cameras">
+        <section class="page-heading page-heading--actions">
+          <div><p class="eyebrow">Videovigilancia</p><h1>Cámaras</h1><p>Administra la cámara del dispositivo, cámaras IP/LAN y enlaces compatibles de plataformas de videovigilancia.</p></div>
+          <div class="page-actions">
+            <button id="add-camera-button" class="btn btn--primary" type="button">Agregar cámara</button>
+            <button class="info-btn info-btn--large" type="button" data-help-topic="camaras" aria-label="Ayuda sobre cámaras">i</button>
+          </div>
+        </section>
+        <div class="notice notice--info"><strong>Uso local:</strong> la cámara del dispositivo no necesita internet, pero el navegador puede exigir localhost/HTTPS. Las cámaras IP de tu casa pueden trabajar por LAN; para verlas desde fuera de casa se requiere un servicio remoto, gateway o plataforma del fabricante.</div>
+        <section id="camera-grid" class="camera-grid"></section>
+      </main>
+
+      <!-- HISTORIAL -->
+      <main class="view" data-view-panel="history">
+        <section class="page-heading page-heading--actions">
+          <div><p class="eyebrow">Auditoría</p><h1>Historial de eventos</h1><p>Consulta la actividad registrada por Casa Segura. En modo online los eventos también se sincronizan con PostgreSQL.</p></div>
+          <button id="clear-history" class="btn btn--secondary" type="button">Limpiar historial</button>
+        </section>
+        <section class="card history-card"><ul id="event-list" class="event-list"></ul></section>
+      </main>
+
+
+      <!-- BASE DE DATOS -->
+      <main class="view" data-view-panel="database">
+        <section class="page-heading page-heading--actions">
+          <div>
+            <p class="eyebrow">Administración de datos</p>
+            <h1>Base de datos</h1>
+            <p>Consulta los registros que utiliza Casa Segura. Online muestra PostgreSQL; offline muestra la caché local del equipo.</p>
+          </div>
+          <div class="page-actions">
+            <button id="db-refresh-button" class="btn btn--primary" type="button">Actualizar</button>
+            <button class="btn btn--secondary" type="button" data-go="settings">Configurar servidor</button>
+          </div>
+        </section>
+
+        <section class="database-overview">
+          <article class="card database-status-card">
+            <p class="eyebrow">Origen de datos</p>
+            <strong id="database-origin">Caché local</strong>
+            <span id="database-origin-detail">Casa Segura está trabajando offline.</span>
+          </article>
+          <article class="card database-status-card">
+            <p class="eyebrow">Servidor</p>
+            <strong id="database-server-status">No conectado</strong>
+            <span id="database-server-detail">Configura la dirección del servidor para utilizar PostgreSQL.</span>
+          </article>
+          <article class="card database-status-card">
+            <p class="eyebrow">Vivienda</p>
+            <strong id="database-home-name">Mi vivienda</strong>
+            <span id="database-record-count">0 registros visibles</span>
+          </article>
+        </section>
+
+        <section class="card database-browser">
+          <div class="database-browser-head">
+            <div>
+              <p class="eyebrow">Tablas</p>
+              <h3>Explorador de registros</h3>
+            </div>
+            <span class="state-text">Lectura administrativa</span>
+          </div>
+          <div id="database-table-tabs" class="database-table-tabs">
+            <button type="button" data-db-table="homes" class="is-active">Viviendas</button>
+            <button type="button" data-db-table="rooms">Habitaciones</button>
+            <button type="button" data-db-table="devices">Dispositivos</button>
+            <button type="button" data-db-table="events">Eventos</button>
+            <button type="button" data-db-table="notifications">Notificaciones</button>
+          </div>
+          <div id="database-table-message" class="database-table-message">Cargando registros…</div>
+          <div class="table-scroll database-table-scroll">
+            <table id="database-record-table">
+              <thead id="database-record-head"></thead>
+              <tbody id="database-record-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="notice notice--info">
+          <strong>Administración:</strong> agrega, edita o elimina viviendas y dispositivos desde “Mi vivienda” y “Dispositivos”. Este explorador permite verificar directamente qué registros están almacenados.
+        </section>
+      </main>
+
+      <!-- CONFIG -->
+      
+      <main class="view" data-view-panel="cad">
+        <div class="page-heading page-heading--actions">
+          <div>
+            <p class="eyebrow">Modelado arquitectónico</p>
+            <h1>Editor CAD integrado</h1>
+            <p>El plano que modifiques aquí alimenta directamente el modelo arquitectónico 3D del panel central.</p>
+          </div>
+          <div class="page-actions">
+            <button id="cad-reset" class="btn btn--secondary" type="button">Restablecer demo</button>
+            <button id="cad-apply" class="btn btn--primary" type="button">Aplicar a Casa Segura</button>
+          </div>
+        </div>
+
+        <div class="cad-app-grid">
+          <article class="card cad-main-card">
+            <div class="section-heading">
+              <div><p class="eyebrow">Plano editable</p><h3>Distribución arquitectónica</h3></div>
+            </div>
+
+            <div class="cad-toolbar">
+              <select id="cad-bedrooms">
+                <option value="1">1 recámara</option><option value="2" selected>2 recámaras</option>
+                <option value="3">3 recámaras</option><option value="4">4 recámaras</option>
+                <option value="5">5 recámaras</option><option value="6">6 recámaras</option>
+              </select>
+              <button id="cad-generate" class="btn btn--secondary" type="button">Generar distribución</button>
+              <button id="cad-add-room" class="btn btn--secondary" type="button">Agregar habitación</button>
+              <button id="cad-snap-toggle" class="mini-btn cad-snap-toggle is-active" type="button">Snap: ON</button>
+              <span id="cad-structure-status" class="cad-structure-status">1 estructura</span>
+            </div>
+
+            <div class="cad-stage">
+              <svg id="cad-editor-svg" viewBox="0 0 1000 650" aria-label="Plano CAD editable de Casa Segura"></svg>
+              <div class="cad-stage-help">
+                Arrastra habitaciones · usa las esquinas para redimensionar · arrastra puertas, ventanas y cámaras a cualquier pared.
+              </div>
+            </div>
+            <div id="cad-drag-status" class="cad-drag-status">Edición libre activa.</div>
+          </article>
+
+          <aside class="card cad-side-card">
+            <p class="eyebrow">Propiedades</p>
+            <h3>Elemento seleccionado</h3>
+            <div id="cad-editor-properties"><p class="muted compact">Selecciona una habitación.</p></div>
+
+            <div class="cad-info">
+              <strong>Misma aplicación:</strong> las habitaciones, puertas, ventanas y cámaras de este editor son las que usa el modelo 3D central.
+            </div>
+
+            <div class="section-heading" style="margin-top:16px">
+              <div><p class="eyebrow">Elementos</p><h3>Puertas · Ventanas · Cámaras</h3></div>
+            </div>
+            <div id="cad-device-list" class="cad-device-list"></div>
+          </aside>
+        </div>
+      </main>
+
+
+      <main class="view" data-view-panel="settings">
+        <section class="page-heading">
+          <div><p class="eyebrow">Preferencias</p><h1>Configuración</h1><p>Administra seguridad, conectividad y el servidor central de Casa Segura.</p></div>
+        </section>
+
+        <section class="settings-grid">
+          <form id="change-pin-form" class="card settings-card">
+            <div class="section-heading"><div><p class="eyebrow">Seguridad local</p><h3>Cambiar PIN</h3></div><button class="info-btn" type="button" data-help-topic="pin">i</button></div>
+            <p class="muted compact">El PIN protege las acciones locales de Casa Segura. Para una implementación pública se recomienda complementar el acceso con autenticación del servidor.</p>
+
+            <label for="current-pin">PIN actual</label>
+            <div class="password-field"><input id="current-pin" type="password" inputmode="numeric" maxlength="8"><button class="password-toggle" type="button" data-toggle-password="current-pin">◉</button></div>
+
+            <label for="new-pin">Nuevo PIN</label>
+            <div class="password-field"><input id="new-pin" type="password" inputmode="numeric" maxlength="8"><button class="password-toggle" type="button" data-toggle-password="new-pin">◉</button></div>
+
+            <label for="confirm-pin">Confirmar nuevo PIN</label>
+            <div class="password-field"><input id="confirm-pin" type="password" inputmode="numeric" maxlength="8"><button class="password-toggle" type="button" data-toggle-password="confirm-pin">◉</button></div>
+
+            <p id="pin-settings-message" class="form-message" aria-live="polite"></p>
+            <button class="btn btn--primary btn--block" type="submit">Actualizar PIN</button>
+          </form>
+
+          <section class="card settings-card">
+            <p class="eyebrow">Datos del sistema</p>
+            <h3>Base de datos central</h3>
+            <p class="muted compact">Cuando Casa Segura está online, PostgreSQL es la base central compartida. En offline, el equipo conserva una caché local para continuidad.</p>
+            <div class="setting-info"><span>Estado</span><strong id="settings-db-status">Offline</strong></div>
+            <div class="setting-info"><span>Servidor</span><strong id="settings-db-server">No configurado</strong></div>
+            <button class="btn btn--secondary btn--block" type="button" data-go="database">Abrir base de datos</button>
+          </section>
+
+          <section class="card settings-card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Conectividad</p>
+                <h3>Modo local / online</h3>
+              </div>
+              <button class="info-btn" type="button" data-help-topic="online">i</button>
+            </div>
+            <p class="muted compact">La computadora utiliza la conexión Wi‑Fi/Ethernet que ya tenga el sistema operativo. Casa Segura no solicita ni guarda la contraseña de tu Wi‑Fi.</p>
+            <div class="setting-info"><span>Internet detectado</span><strong id="internet-status-label">Comprobando…</strong></div>
+            <div class="setting-info"><span>Modo solicitado</span><strong id="online-mode-label">Local</strong></div>
+            <div class="setting-info"><span>Servidor central</span><strong id="remote-provider-label">No configurado</strong></div>
+            <button id="toggle-online-mode" class="btn btn--secondary btn--block" type="button">Activar modo online</button>
+            <p class="muted compact online-note">El modo online conecta Casa Segura con el servidor central configurado y sincroniza los registros compartidos entre equipos.</p>
+          </section>
+
+
+          <section class="card settings-card settings-card--wide">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Base central compartida</p>
+                <h3>Servidor compartido Casa Segura</h3>
+              </div>
+              <button class="info-btn" type="button" data-help-topic="servidor">i</button>
+            </div>
+            <p class="muted compact">
+              Configura aquí el servidor central cuando Casa Segura se utilizará de forma compartida
+              desde varias computadoras o teléfonos.
+            </p>
+
+            <label for="api-base-url">Dirección del servidor Casa Segura</label>
+            <input id="api-base-url" type="url" placeholder="http://192.168.1.50:3000/api">
+
+            <label for="api-shared-key">Clave de conexión (opcional)</label>
+            <div class="password-field">
+              <input id="api-shared-key" type="password" autocomplete="off" placeholder="Clave del servidor">
+              <button class="password-toggle" type="button" data-toggle-password="api-shared-key">◉</button>
+            </div>
+
+            <div class="setting-info"><span>Servidor</span><strong id="api-server-status">No configurado</strong></div>
+            <div class="setting-info"><span>Última sincronización</span><strong id="last-sync-label">Nunca</strong></div>
+            <div class="setting-info"><span>Operaciones pendientes</span><strong id="pending-sync-label">0</strong></div>
+
+            <div class="remote-actions">
+              <button id="save-api-config" class="btn btn--secondary" type="button">Guardar servidor</button>
+              <button id="test-api-connection" class="btn btn--secondary" type="button">Probar conexión</button>
+              <button id="sync-now-button" class="btn btn--primary" type="button">Sincronizar ahora</button>
+            </div>
+          </section>
+
+          <section class="card settings-card">
+            <p class="eyebrow">Experiencia</p>
+            <h3>Guía de configuración</h3>
+            <p class="muted compact">Puedes volver a ejecutar la introducción guiada para conocer la aplicación desde el inicio.</p>
+            <button id="restart-onboarding" class="btn btn--secondary btn--block" type="button">Abrir guía inicial</button>
+            <button class="btn btn--secondary btn--block" type="button" data-go="help">Abrir manual completo</button>
+          </section>
+        </section>
+      </main>
+
+      <!-- AYUDA -->
+      <main class="view" data-view-panel="help">
+        <section class="page-heading">
+          <div><p class="eyebrow">Manual integrado</p><h1>Centro de ayuda</h1><p>Consulta qué puede hacer Casa Segura y cómo utilizar cada función.</p></div>
+        </section>
+
+        <section class="help-search card">
+          <label for="help-search">Buscar en el manual</label>
+          <input id="help-search" type="search" placeholder="Ej. botón de pánico, cámara, PIN, ventana...">
+        </section>
+
+        <section id="help-topics" class="help-topics">
+          <details class="help-topic" data-topic="inicio" open>
+            <summary><span>Primeros pasos</span><small>Cómo entrar y conocer el panel</small></summary>
+            <div><p>1. Ingresa con tu PIN.</p><p>2. Revisa el estado general en Panel.</p><p>3. Configura habitaciones y dispositivos en “Mi vivienda”.</p><p>4. Cierra todos los accesos antes de activar la protección.</p></div>
+          </details>
+          <details class="help-topic" data-topic="vivienda">
+            <summary><span>Configurar mi vivienda</span><small>Habitaciones y dispositivos editables</small></summary>
+            <div>
+              <p>La vivienda incluida al iniciar Casa Segura es una configuración normal y totalmente editable.</p>
+              <p>Puedes agregar, renombrar o eliminar habitaciones, puertas, ventanas, cámaras y sensores.</p>
+              <p>Cada dispositivo puede cambiar de habitación y de ubicación visual. Los accesos aparecen automáticamente en Estado de sensores.</p>
+            </div>
+          </details>
+          <details class="help-topic" data-topic="activar">
+            <summary><span>Activar o desactivar protección</span><small>Uso del PIN y estado de accesos</small></summary>
+            <div><p>En Panel escribe tu PIN y presiona “Activar protección”. Si existe una puerta o ventana abierta, Casa Segura indicará qué accesos debes revisar.</p><p>Para desactivar, vuelve a introducir el PIN y usa el mismo control.</p></div>
+          </details>
+          <details class="help-topic" data-topic="panico">
+            <summary><span>Botón de pánico y emergencia</span><small>Qué ocurre después de activarlo</small></summary>
+            <div><p>El botón rojo permanece disponible durante toda la sesión. Al activarlo, la alarma comienza y aparece una pantalla crítica.</p><p>La alarma no se puede silenciar desde esa pantalla sin introducir un PIN válido.</p><p>El sistema simula el envío de una alerta al centro de vigilancia y registra la emergencia en el historial.</p></div>
+          </details>
+          <details class="help-topic" data-topic="camaras">
+            <summary><span>Cámaras</span><small>Cámara del dispositivo, LAN/IP y acceso remoto</small></summary>
+            <div><p>La opción “Cámara del dispositivo” usa getUserMedia y solamente se inicia cuando tú presionas Iniciar cámara. En un teléfono puede usar la cámara frontal o trasera porque ambas pertenecen al mismo dispositivo.</p><p>Las cámaras IP pueden estar conectadas por Wi‑Fi o Ethernet dentro de la red de casa. Para acceder desde universidad, trabajo u otra red se necesita una ruta remota segura: plataforma del fabricante, gateway en casa o backend compatible.</p></div>
+          </details>
+          <details class="help-topic" data-topic="pin">
+            <summary><span>PIN y privacidad</span><small>Mostrar, ocultar y cambiar credencial</small></summary>
+            <div><p>Los campos de PIN se muestran ocultos por defecto. El botón con el icono de ojo permite mostrar u ocultar temporalmente el valor.</p><p>El PIN puede cambiarse desde Configuración. Esta versión académica lo almacena de forma local; una versión de producción debe usar backend, hash y sesiones seguras.</p></div>
+          </details>
+          <details class="help-topic" data-topic="datos">
+            <summary><span>Base de datos</span><small>PostgreSQL y operación offline</small></summary>
+            <div>
+              <p>PostgreSQL es la base central cuando Casa Segura está online. Varias laptops pueden consultar y sincronizar los mismos registros mediante la API.</p>
+              <p>Cuando no hay conexión, Casa Segura conserva una caché local para continuar operando. Al recuperar el servidor, sincroniza las operaciones pendientes.</p>
+              <p>El menú “Base de datos” permite inspeccionar viviendas, habitaciones, dispositivos, eventos y notificaciones.</p>
+            </div>
+          </details>
+
+          <details class="help-topic" data-topic="servidor">
+            <summary><span>PostgreSQL y seis laptops</span><small>Cómo comparten los mismos registros</small></summary>
+            <div>
+              <p>Una PC de Casa Segura ejecuta PostgreSQL y la API incluida en la carpeta backend. Esa PC debe tener una IP accesible desde las demás laptops.</p>
+              <p>Las laptops nunca se conectan directamente a PostgreSQL. El navegador se comunica con la API HTTP, y la API realiza las consultas SQL.</p>
+              <p>IndexedDB continúa funcionando en cada laptop como almacenamiento local. Cuando la API está disponible, las operaciones pendientes se sincronizan con PostgreSQL.</p>
+              <p>Para Internet público se requiere HTTPS, autenticación real y una ruta segura hacia el servidor. No expongas el puerto de PostgreSQL directamente a Internet.</p>
+            </div>
+          </details>
+
+          <details class="help-topic" data-topic="online">
+            <summary><span>Modo local, LAN e Internet</span><small>Qué ocurre cuando activas Online</small></summary>
+            <div>
+              <p><strong>Local:</strong> Casa Segura funciona con su base IndexedDB y no necesita Internet.</p>
+              <p><strong>LAN:</strong> si la computadora y una cámara IP están en el mismo router, pueden comunicarse dentro de la red local aunque no exista salida a Internet.</p>
+              <p><strong>Online/remoto:</strong> permite que una instalación de Casa Segura se comunique con servicios externos. Para ver una cámara desde otra ciudad no basta con activar un interruptor: la cámara necesita un gateway, nube del fabricante o servicio remoto accesible.</p>
+              <p>Casa Segura nunca necesita pedir la contraseña Wi‑Fi; esa conexión la gestiona Windows, Android, iOS u otro sistema operativo.</p>
+            </div>
+          </details>
+          <details class="help-topic" data-topic="estados">
+            <summary><span>Estados visuales</span><small>Qué significan los colores</small></summary>
+            <div><p>Azul: acción normal. Verde: estado correcto. Ámbar: advertencia. Rojo: emergencia o acción crítica.</p><p>La aplicación no depende únicamente del color: cada estado crítico incluye texto descriptivo.</p></div>
+          </details>
+        </section>
+      </main>
+    </section>
+
+    <!-- PÁNICO -->
+    <button id="panic-button" class="panic-button" type="button"><span>⚠</span><strong>PÁNICO</strong></button>
+
+    <!-- NOTIFICACIONES -->
+    <aside id="notifications-panel" class="notifications-panel" hidden>
+      <header>
+        <div><p class="eyebrow">Actividad</p><h3>Notificaciones</h3></div>
+        <div class="notification-header-actions">
+          <button id="clear-notifications" class="notification-clear-btn" type="button">Eliminar todas</button>
+          <button id="close-notifications" class="icon-btn" type="button" aria-label="Cerrar notificaciones">×</button>
+        </div>
+      </header>
+      <div class="notification-panel-info">
+        <span id="notification-panel-count">0 notificaciones</span>
+        <small>Puedes eliminar avisos individuales o limpiar todo el centro.</small>
+      </div>
+      <ul id="notification-list"></ul>
+    </aside>
+  </div>
+
+  <!-- EMERGENCIA CRÍTICA: NO TIENE BOTÓN CERRAR -->
+  <section id="emergency-screen" class="emergency-screen" hidden aria-live="assertive">
+    <div class="emergency-panel">
+      <div class="emergency-symbol">⚠</div>
+      <p class="emergency-kicker">Estado crítico</p>
+      <h2>EMERGENCIA ACTIVADA</h2>
+      <p id="emergency-reason" class="emergency-reason">Se activó una alarma.</p>
+
+      <div class="emergency-rule">
+        <strong>No puedes desactivar el sonido hasta validar tu PIN.</strong>
+        <span>La emergencia permanecerá activa mientras la credencial no sea correcta.</span>
+      </div>
+
+      <div class="emergency-surveillance">
+        <div><span>Centro de vigilancia</span><strong id="emergency-agency-text">Enviando alerta…</strong></div>
+        <progress id="emergency-agency-progress" max="100" value="0"></progress>
+      </div>
+
+      <form id="emergency-pin-form" novalidate>
+        <label for="emergency-pin">PIN de seguridad</label>
+        <div class="password-field password-field--emergency">
+          <input id="emergency-pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+          <button class="password-toggle" type="button" data-toggle-password="emergency-pin" aria-label="Mostrar u ocultar PIN">◉</button>
+        </div>
+        <p id="emergency-pin-message" class="emergency-message" aria-live="assertive"></p>
+        <button class="btn btn--danger btn--block btn--large" type="submit">Validar PIN y silenciar</button>
+      </form>
+
+      <small class="emergency-foot">La activación y el cierre de la emergencia quedan registrados en el historial.</small>
+    </div>
+  </section>
+
+  <!-- ONBOARDING -->
+  <section id="onboarding" class="overlay" hidden>
+    <div class="onboarding-card">
+      <div class="onboarding-progress"><span id="onboarding-bar"></span></div>
+      <button id="onboarding-close" class="icon-btn onboarding-close" type="button" aria-label="Cerrar guía">×</button>
+      <div id="onboarding-content"></div>
+    </div>
+  </section>
+
+  <!-- MODAL GENERAL -->
+  <section id="modal-backdrop" class="overlay" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <header><div><p class="eyebrow">Casa Segura</p><h3 id="modal-title">Configuración</h3></div><button id="modal-close" class="icon-btn" type="button">×</button></header>
+      <form id="dynamic-form"></form>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN PROFESIONAL -->
+  <section id="confirm-backdrop" class="overlay" hidden>
+    <div class="confirm-card">
+      <div class="confirm-icon">!</div>
+      <h3 id="confirm-title">Confirmar acción</h3>
+      <p id="confirm-text"></p>
+      <div class="confirm-actions">
+        <button id="confirm-cancel" class="btn btn--secondary" type="button">Cancelar</button>
+        <button id="confirm-accept" class="btn btn--danger" type="button">Confirmar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AYUDA CONTEXTUAL -->
+  <section id="help-drawer" class="help-drawer" hidden>
+    <header><div><p class="eyebrow">Ayuda contextual</p><h3 id="help-drawer-title">Ayuda</h3></div><button id="help-drawer-close" class="icon-btn" type="button">×</button></header>
+    <div id="help-drawer-content"></div>
+    <button id="help-drawer-manual" class="btn btn--secondary btn--block" type="button">Abrir manual completo</button>
+  </section>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="js/puntos/punto-1-control-pin.js"></script>
+  <script src="js/core/profile-manager.js"></script>
+  <script src="js/puntos/punto-2-sensores.js"></script>
+  <script src="js/puntos/punto-3-alarma-sonora.js"></script>
+  <script src="js/puntos/punto-4-boton-panico.js"></script>
+  <script src="js/puntos/punto-5-aviso-agencia.js"></script>
+  <script src="js/puntos/punto-6-pantalla-lcd.js"></script>
+  <script src="js/puntos/punto-7-interfaz-web.js"></script>
+  <script src="js/core/db-production.js"></script>
+  <script src="js/modulos/vivienda-production.js"></script>
+  <script src="js/modulos/camaras-v23.js"></script>
+  <script src="js/modulos/ux-v23.js"></script>
+  <script src="js/modulos/security-house-production.js"></script>
+  <script src="js/modulos/connectivity-v23.js"></script>
+  <script src="js/modulos/remote-postgres-production.js"></script>
+  <script src="js/modulos/database-admin-production.js"></script>
+  <script src="js/cad/cad-store.js"></script>
+  <script src="js/cad/cad-snap-engine.js"></script>
+  <script src="js/cad/cad-structure-engine.js"></script>
+  <script src="js/cad/cad-roof-engine.js"></script>
+  <script src="js/cad/cad-wall-engine.js"></script>
+  <script src="js/cad/cad-navigation-engine.js"></script>
+  <script src="js/cad/cad-runtime-sync.js"></script>
+  <script src="js/cad/cad-opening-editor.js"></script>
+  <script src="js/cad/cad-drag-engine.js"></script>
+  <script src="js/cad/cad-editor.js"></script>
+  <script src="js/cad/architectural-3d-dynamic.js"></script>
+  <script src="js/core/app-production.js"></script>
+</body>
+</html>

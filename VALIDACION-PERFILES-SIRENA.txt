@@ -1,0 +1,12 @@
+CASA SEGURA — PERFILES + DEMO RESTAURABLE + SIRENA
+==================================================
+JavaScript: OK
+Referencias: OK
+Selector de perfil: OK
+Botón cambiar vivienda: OK
+Profile manager cargado: OK
+DB Demo separada: OK
+DB Principal separada: OK
+CAD por perfil: OK
+Alarma sirena: OK
+Motor 3D sin edición de perfiles: OK

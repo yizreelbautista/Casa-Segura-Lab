@@ -1,0 +1,1232 @@
+:root{
+  --bg:#0b1220;--bg-soft:#0f172a;--surface:#111827;--surface-2:#162032;--surface-3:#1c293c;
+  --border:#293548;--border-soft:rgba(148,163,184,.16);--text:#f8fafc;--muted:#94a3b8;
+  --blue:#2563eb;--blue-hover:#3b82f6;--blue-soft:rgba(37,99,235,.14);
+  --green:#16a34a;--green-soft:rgba(22,163,74,.13);--amber:#f59e0b;--amber-soft:rgba(245,158,11,.14);
+  --red:#dc2626;--red-hover:#ef4444;--red-dark:#7f1d1d;--red-soft:rgba(220,38,38,.14);
+  --radius:14px;--radius-sm:10px;--shadow:0 24px 64px rgba(0,0,0,.34);--sidebar:244px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}[hidden]{display:none!important}
+input,select{width:100%;height:44px;padding:0 12px;border:1px solid var(--border);border-radius:9px;background:#0d1726;color:var(--text);outline:none}
+input:focus,select:focus{border-color:#4f83ef;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+label{display:block;margin:13px 0 7px;color:#cbd5e1;font-size:11px;font-weight:700}
+h1,h2,h3,h4,p{overflow-wrap:anywhere}.muted{color:var(--muted)}.compact{font-size:11px;line-height:1.55}
+.eyebrow{margin:0;color:#7fa5f7;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:11px}.brand span:last-child strong,.brand span:last-child small{display:block}.brand span:last-child small{margin-top:3px;color:var(--muted);font-size:9px;letter-spacing:.06em;text-transform:uppercase}
+.brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;background:#19376d;color:#dbeafe;font-weight:900}
+.btn{min-height:42px;padding:0 15px;border:1px solid transparent;border-radius:9px;font-size:11px;font-weight:750;transition:.16s ease}
+.btn:hover{transform:translateY(-1px)}.btn--primary{background:var(--blue);color:white}.btn--primary:hover{background:var(--blue-hover)}
+.btn--secondary{border-color:var(--border);background:#151f30;color:#dbe5f0}.btn--secondary:hover{background:#1a2739}
+.btn--danger{background:var(--red);color:white}.btn--danger:hover{background:var(--red-hover)}.btn--block{width:100%}.btn--large{min-height:50px}
+.icon-btn{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--border);border-radius:9px;background:#151f30;color:#dbe5f0;font-size:16px}
+.icon-btn:hover{background:#1c2a3d}.text-action{padding:0;border:0;background:transparent;color:#8db0fb;font-size:10px;font-weight:700}.text-action:hover{text-decoration:underline}
+.info-btn{width:26px;height:26px;border:1px solid #38527e;border-radius:50%;background:transparent;color:#8db0fb;font-size:11px;font-weight:900}.info-btn--large{width:38px;height:38px}
+.plain-status{display:flex;align-items:center;gap:8px;color:#cbd5e1;font-size:10px}.plain-status strong,.plain-status small{display:block}.plain-status small{margin-top:2px;color:var(--muted);font-size:8px}
+.dot{width:8px;height:8px;flex:0 0 auto;border-radius:50%;background:#64748b}.dot--ok{background:var(--green)}.dot--warn{background:var(--amber)}.dot--danger{background:var(--red)}
+.state-text{color:var(--muted);font-size:10px;font-weight:700}.card{border:1px solid var(--border-soft);border-radius:var(--radius);background:var(--surface);box-shadow:0 10px 32px rgba(0,0,0,.12)}
+.section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.section-heading h3{margin:4px 0 0;font-size:16px}.card-actions{display:flex;align-items:center;gap:14px;margin-top:15px}
+.form-message{min-height:18px;margin:7px 0 5px;color:#fca5a5;font-size:10px;font-weight:700}.form-message.is-success{color:#86efac}
+.password-field{position:relative}.password-field input{padding-right:44px}.password-toggle{position:absolute;right:4px;top:4px;width:36px;height:36px;border:0;border-radius:7px;background:transparent;color:#8091a7;font-size:14px}.password-toggle:hover{background:#1a2638;color:#d8e3ef}
+
+/* ACCESS */
+.access-screen{min-height:100vh;padding:28px clamp(20px,5vw,70px);display:flex;flex-direction:column;background:radial-gradient(circle at 12% 20%,rgba(37,99,235,.14),transparent 29%),linear-gradient(145deg,#090f1b,#0b1220 55%,#0d1726)}
+.access-header{display:flex;justify-content:space-between;align-items:center;gap:20px}.access-layout{width:min(1140px,100%);margin:auto;display:grid;grid-template-columns:1.18fr .68fr;gap:clamp(45px,8vw,110px);align-items:center;padding:48px 0}
+.access-copy h1{margin:12px 0 18px;font-size:clamp(45px,6vw,78px);line-height:.98;letter-spacing:-.05em}.lead{max-width:630px;margin:0;color:#aab7c7;font-size:15px;line-height:1.72}
+.access-facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:34px;border:1px solid var(--border);border-radius:12px;overflow:hidden}.access-facts div{padding:15px;background:#0f1928;border-right:1px solid var(--border)}.access-facts div:last-child{border-right:0}.access-facts strong,.access-facts span{display:block}.access-facts strong{color:#93b4fb;font-size:15px}.access-facts span{margin-top:4px;color:var(--muted);font-size:8px}
+.access-card{padding:29px}.access-card h2{margin:6px 0 7px;font-size:25px}.access-card .btn{margin-top:6px}.access-hint{display:block;margin-top:12px;color:#718198;text-align:center;font-size:9px}
+
+/* APP */
+.app-shell{min-height:100vh;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr)}
+.sidebar{position:sticky;top:0;height:100vh;padding:17px 13px;display:flex;flex-direction:column;border-right:1px solid var(--border);background:#0c1422;z-index:60}.sidebar-brand{padding:5px 5px 18px}
+.nav{display:grid;gap:4px}.nav-link{width:100%;min-height:43px;padding:0 12px;display:flex;align-items:center;gap:10px;border:1px solid transparent;border-radius:9px;background:transparent;color:#9aa8ba;text-align:left;font-size:11px;font-weight:650}
+.nav-link span{width:22px;color:#74849a;font-size:14px}.nav-link:hover{background:#131d2c;color:#e6edf5}.nav-link.is-active{border-color:#27436f;background:#15233a;color:#e8f0ff}.nav-link.is-active span{color:#8db0fb}
+.sidebar-bottom{margin-top:auto;display:grid;gap:12px}.sidebar-state{padding:10px 7px}
+.workspace{min-width:0}.topbar{position:sticky;top:0;z-index:45;min-height:72px;padding:12px clamp(16px,3vw,36px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(11,18,32,.94);backdrop-filter:blur(16px)}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:12px}.topbar h2{margin:3px 0 0;font-size:17px}.clock{min-width:76px;color:#b8c5d5;font-size:11px;font-variant-numeric:tabular-nums;text-align:center}.mobile-menu{display:none}
+.bell-btn{position:relative}.bell-btn b{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:var(--blue);color:white;font-size:8px}
+.view{display:none;width:min(1460px,calc(100% - 36px));margin:0 auto;padding:25px 0 42px}.view.is-active{display:block}
+.page-heading{margin-bottom:17px}.page-heading h1{margin:5px 0 6px;font-size:29px;letter-spacing:-.025em}.page-heading p:last-child{max-width:760px;margin:0;color:var(--muted);font-size:11px;line-height:1.55}
+.page-heading--actions{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* DASH */
+.system-banner{display:grid;grid-template-columns:1.12fr .88fr;gap:1px;margin-bottom:14px;overflow:hidden;border:1px solid var(--border-soft);border-radius:var(--radius);background:var(--border)}
+.system-banner__state,.arm-box{min-height:118px;padding:20px;background:var(--surface)}.system-banner__state{display:flex;align-items:center;gap:15px}
+.system-orb{width:13px;height:13px;border-radius:50%;background:#64748b;box-shadow:0 0 0 7px rgba(100,116,139,.1)}.system-banner.is-active .system-orb{background:var(--green);box-shadow:0 0 0 7px var(--green-soft)}.system-banner.is-alarm .system-orb{background:var(--red);box-shadow:0 0 0 7px var(--red-soft);animation:pulse 1s infinite}
+.system-banner__state small,.system-banner__state strong{display:block}.system-banner__state small{color:#78889e;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.system-banner__state strong{margin-top:5px;font-size:18px}.system-banner__state p{margin:5px 0 0;color:var(--muted);font-size:10px}
+.arm-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}.metrics article{padding:16px;border:1px solid var(--border-soft);border-radius:12px;background:var(--surface)}.metrics span,.metrics strong,.metrics small{display:block}.metrics span{color:#7e8da1;font-size:8px;text-transform:uppercase;font-weight:800;letter-spacing:.07em}.metrics strong{margin:7px 0 4px;font-size:18px}.metrics small{color:var(--muted);font-size:8px}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(290px,.65fr);gap:12px}.dashboard-grid>.card,.side-stack>.card{padding:18px}.side-stack{display:grid;gap:12px}
+.mini-home-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.mini-room{min-height:92px;padding:11px;border:1px solid var(--border);border-radius:10px;background:#0e1928}.mini-room strong,.mini-room small{display:block}.mini-room strong{font-size:10px}.mini-room small{margin-top:4px;color:var(--muted);font-size:8px}.mini-room-devices{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}.device-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}.device-dot.is-open{background:var(--amber)}.device-dot.is-alert{background:var(--red)}
+.progress-line{display:grid;grid-template-columns:1fr auto;align-items:center;gap:9px;margin-top:15px}.progress-line progress{width:100%;height:8px}.progress-line span{font-size:9px;color:var(--muted);font-weight:700}.recent-card{margin-top:12px;padding:18px}
+@keyframes pulse{50%{transform:scale(1.25);opacity:.68}}
+
+/* HOME */
+.home-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:12px}.tools-panel,.home-editor-card{padding:18px}.helper-copy{color:var(--muted);font-size:9px;line-height:1.55}
+.tool-action{width:100%;min-height:52px;margin-bottom:7px;padding:8px 10px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:9px;background:#101b2a;color:var(--text);text-align:left}.tool-action:hover{border-color:#3e5f95;background:#142238}.tool-action>span{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#182840;color:#91b2fa;font-size:16px}.tool-action strong,.tool-action small{display:block}.tool-action strong{font-size:10px}.tool-action small{margin-top:2px;color:var(--muted);font-size:8px}.field-group{margin-top:17px;padding-top:15px;border-top:1px solid var(--border)}
+.home-editor{min-height:520px;margin-top:15px;display:grid;grid-template-columns:repeat(3,minmax(190px,1fr));grid-auto-rows:minmax(180px,auto);gap:10px}.empty-state{grid-column:1/-1;min-height:260px;display:grid;place-items:center;border:1px dashed var(--border);border-radius:12px;color:var(--muted);font-size:11px;text-align:center;padding:30px}
+.room-card{padding:14px;border:1px solid var(--border);border-radius:12px;background:#0f1b2b}.room-header{display:flex;justify-content:space-between;gap:12px}.room-header h4{margin:0;font-size:12px}.room-header small{display:block;margin-top:3px;color:var(--muted);font-size:8px}.room-header-actions{display:flex;gap:5px}.room-header-actions button{width:28px;height:28px;border:1px solid var(--border);border-radius:7px;background:#142033;color:#9dacbe}.room-devices{display:grid;gap:7px;margin-top:14px}.room-device{padding:9px;border:1px solid var(--border-soft);border-radius:9px;background:#111e2e}.room-device-row{display:flex;justify-content:space-between;align-items:center;gap:9px}.room-device strong,.room-device small{display:block}.room-device strong{font-size:9px}.room-device small{margin-top:3px;color:var(--muted);font-size:7px}.sensor-action{min-height:30px;padding:0 9px;border:1px solid #38527e;border-radius:7px;background:#152642;color:#b9cffc;font-size:8px;font-weight:700}.sensor-action.is-open{border-color:#7c5a1f;background:#2a2112;color:#f8c865}.room-add{margin-top:11px}
+
+/* TABLE */
+.table-card{overflow:hidden}.table-scroll{overflow:auto}table{width:100%;min-width:760px;border-collapse:collapse}th,td{padding:13px 16px;border-bottom:1px solid var(--border-soft);text-align:left}th{background:#101a29;color:#7d8da1;font-size:8px;text-transform:uppercase;letter-spacing:.08em}td{font-size:10px;color:#cdd7e4}.table-actions{display:flex;gap:6px}.mini-btn{min-height:30px;padding:0 9px;border:1px solid var(--border);border-radius:7px;background:#152033;color:#b7c3d3;font-size:8px}.mini-btn--danger{border-color:#66353a;color:#f2a3aa}
+
+/* CAM */
+.notice{margin-bottom:13px;padding:11px 13px;border:1px solid var(--border);border-radius:10px;font-size:9px;line-height:1.5}.notice--info{border-color:#294879;background:#10203a;color:#b6c9ee}
+.camera-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.camera-card{overflow:hidden;border:1px solid var(--border-soft);border-radius:12px;background:var(--surface)}.camera-view{aspect-ratio:16/9;display:grid;place-items:center;background:#050a11}.camera-view video{width:100%;height:100%;object-fit:cover}.camera-placeholder{text-align:center;color:#687990}.camera-placeholder span{display:block;font-size:34px}.camera-placeholder small{display:block;margin-top:6px;font-size:8px}.camera-meta{padding:14px}.camera-meta h3{margin:0 0 4px;font-size:12px}.camera-meta p{margin:0;color:var(--muted);font-size:8px}.camera-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+
+/* EVENTS */
+.history-card{padding:6px 17px 17px}.event-list{max-height:620px;margin:0;padding:0;overflow-y:auto;list-style:none}.event-list li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid var(--border-soft)}.event-list li:last-child{border-bottom:0}.event-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#182333;color:#98a8bb;font-size:8px;font-weight:900}.event-icon--system,.event-icon--agency{background:#16294b;color:#9bb9f7}.event-icon--sensor{background:#2a2112;color:#f6c45d}.event-icon--alarm{background:#33171b;color:#f6a0a8}.event-list strong,.event-list small{display:block}.event-list strong{font-size:9px}.event-list small{margin-top:3px;color:var(--muted);font-size:8px;line-height:1.4}.event-list time{color:#6f7d90;font-size:8px}.event-list--compact{max-height:270px}
+
+/* SETTINGS HELP */
+.settings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.settings-card{padding:18px}.settings-card h3{margin:5px 0}.settings-card>.btn{margin-top:8px}.setting-info{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-soft);font-size:9px}.setting-info span{color:var(--muted)}
+.help-search{padding:15px;margin-bottom:12px}.help-search label{margin-top:0}.help-topics{display:grid;gap:8px}.help-topic{border:1px solid var(--border-soft);border-radius:11px;background:var(--surface);overflow:hidden}.help-topic summary{padding:14px 16px;display:flex;justify-content:space-between;gap:20px;cursor:pointer;list-style:none}.help-topic summary::-webkit-details-marker{display:none}.help-topic summary span{font-size:11px;font-weight:750}.help-topic summary small{color:var(--muted);font-size:8px}.help-topic>div{padding:0 16px 14px;color:#aebaca;font-size:9px;line-height:1.58}.help-topic>div p{margin:8px 0}
+
+/* PANIC */
+.panic-button{position:fixed;right:22px;bottom:22px;z-index:700;min-width:128px;height:56px;padding:0 18px;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;background:var(--red);color:white;box-shadow:0 18px 42px rgba(127,29,29,.42);font-size:11px;letter-spacing:.04em}.panic-button span{font-size:19px}.panic-button:hover{background:var(--red-hover);transform:translateY(-2px)}
+.emergency-screen{position:fixed;inset:0;z-index:1200;padding:20px;display:grid;place-items:center;background:radial-gradient(circle at 50% 10%,rgba(220,38,38,.18),transparent 35%),rgba(5,8,14,.96)}.emergency-panel{width:min(590px,100%);padding:30px;border:1px solid #6d2b33;border-radius:16px;background:#12151d;box-shadow:0 30px 90px rgba(0,0,0,.58);text-align:center}.emergency-symbol{width:68px;height:68px;margin:0 auto 13px;display:grid;place-items:center;border-radius:50%;background:var(--red-soft);color:#ff8d98;font-size:30px}.emergency-kicker{margin:0;color:#f59aa3;font-size:9px;text-transform:uppercase;font-weight:900;letter-spacing:.14em}.emergency-panel h2{margin:7px 0 9px;font-size:29px;letter-spacing:.015em}.emergency-reason{margin:0 auto;max-width:460px;color:#d3dae4;font-size:11px;line-height:1.55}.emergency-rule{margin:20px 0;padding:14px;border:1px solid #563036;border-radius:10px;background:#25171b;text-align:left}.emergency-rule strong,.emergency-rule span{display:block}.emergency-rule strong{color:#fecdd3;font-size:11px}.emergency-rule span{margin-top:4px;color:#ba9ba1;font-size:9px}.emergency-surveillance{margin-bottom:18px;padding:12px;border:1px solid var(--border);border-radius:10px;background:#0e141e;text-align:left}.emergency-surveillance>div{display:flex;justify-content:space-between;gap:12px;margin-bottom:9px;font-size:9px}.emergency-surveillance span{color:var(--muted)}.emergency-surveillance progress{width:100%;height:8px}.password-field--emergency input{height:50px;background:#090d14;border-color:#5c3238;text-align:center;font-size:18px;letter-spacing:.22em}.emergency-message{min-height:21px;margin:8px 0;color:#fda4af;font-size:10px;font-weight:750}.emergency-message.is-success{color:#86efac}.emergency-foot{display:block;margin-top:13px;color:#7f8997;font-size:8px}
+
+/* PANELS/OVERLAYS */
+.notifications-panel{position:fixed;top:74px;right:16px;z-index:650;width:min(380px,calc(100vw - 28px));max-height:72vh;overflow:auto;border:1px solid var(--border);border-radius:12px;background:#101a29;box-shadow:var(--shadow)}.notifications-panel header,.help-drawer header,.modal-card header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;background:inherit;border-bottom:1px solid var(--border)}.notifications-panel h3,.help-drawer h3,.modal-card h3{margin:4px 0 0}.notifications-panel ul{margin:0;padding:6px 13px;list-style:none}.notifications-panel li{padding:11px 2px;border-bottom:1px solid var(--border-soft)}.notifications-panel li strong,.notifications-panel li small{display:block}.notifications-panel li strong{font-size:9px}.notifications-panel li small{margin-top:3px;color:var(--muted);font-size:8px;line-height:1.4}
+.overlay{position:fixed;inset:0;z-index:950;padding:18px;display:grid;place-items:center;background:rgba(4,8,14,.78);backdrop-filter:blur(4px)}
+.modal-card,.confirm-card,.onboarding-card{width:min(520px,100%);max-height:90vh;overflow:auto;border:1px solid var(--border);border-radius:14px;background:#111827;box-shadow:var(--shadow)}.modal-card form{padding:16px}.modal-note{margin-top:10px;padding:10px;border-radius:8px;background:#0e1928;color:var(--muted);font-size:8px;line-height:1.5}
+.confirm-card{padding:24px;text-align:center}.confirm-icon{width:42px;height:42px;margin:auto;display:grid;place-items:center;border-radius:50%;background:var(--red-soft);color:#fca5a5;font-weight:900}.confirm-card h3{margin:12px 0 7px}.confirm-card p{margin:0;color:var(--muted);font-size:10px;line-height:1.5}.confirm-actions{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.help-drawer{position:fixed;right:0;top:0;bottom:0;z-index:880;width:min(420px,100vw);padding-bottom:16px;border-left:1px solid var(--border);background:#101a29;box-shadow:-20px 0 50px rgba(0,0,0,.3)}.help-drawer>div{padding:16px;color:#b7c2d1;font-size:10px;line-height:1.6}.help-drawer>.btn{width:calc(100% - 32px);margin:0 16px}
+.onboarding-card{position:relative;padding:26px}.onboarding-progress{height:4px;margin:-26px -26px 24px;background:#0c1422}.onboarding-progress span{display:block;height:100%;width:25%;background:var(--blue);transition:.2s ease}.onboarding-close{position:absolute;right:13px;top:13px}.onboarding-card h2{margin:8px 0}.onboarding-card p{color:var(--muted);font-size:10px;line-height:1.6}.onboarding-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.onboarding-form{margin-top:15px}.onboarding-step-label{color:#8db0fb;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.toast-region{position:fixed;right:20px;bottom:88px;z-index:1100;width:min(330px,calc(100vw - 30px));display:grid;gap:8px}.toast{padding:11px 13px;border:1px solid var(--border);border-radius:9px;background:#142033;box-shadow:0 16px 35px rgba(0,0,0,.28)}.toast strong,.toast span{display:block}.toast strong{font-size:9px}.toast span{margin-top:3px;color:#9eabba;font-size:8px}
+
+/* RESPONSIVE */
+@media(max-width:1060px){.metrics{grid-template-columns:repeat(2,1fr)}.system-banner,.dashboard-grid{grid-template-columns:1fr}.home-layout{grid-template-columns:1fr}.home-editor{grid-template-columns:repeat(2,minmax(180px,1fr))}.settings-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.app-shell{display:block}.sidebar{position:fixed;left:-270px;width:244px;transition:.2s ease}.sidebar.is-open{left:0}.mobile-menu{display:grid}.topbar{padding:11px 13px}.top-system-status{display:none}.view{width:calc(100% - 24px)}.access-layout{grid-template-columns:1fr}.access-copy{padding-top:30px}.camera-grid,.settings-grid{grid-template-columns:1fr}.home-editor{grid-template-columns:1fr}.page-heading--actions{flex-direction:column}.panic-button{right:14px;bottom:14px}.emergency-panel{padding:22px}}
+@media(max-width:520px){.metrics,.access-facts{grid-template-columns:1fr}.access-facts div{border-right:0;border-bottom:1px solid var(--border)}.access-facts div:last-child{border-bottom:0}.arm-row{grid-template-columns:1fr}.mini-home-map{grid-template-columns:1fr}.topbar-right .clock{display:none}.panic-button{width:56px;min-width:56px;padding:0;border-radius:50%}.panic-button strong{display:none}.confirm-actions,.onboarding-actions{display:grid}.confirm-actions .btn,.onboarding-actions .btn{width:100%}}
+
+
+/* =========================================================
+   CASA SEGURA v2.3 — VISUALIZACIÓN DE VIVIENDA
+========================================================= */
+.house-visual{
+  min-height:360px;margin-top:14px;padding:22px;display:grid;place-items:center;
+  border:1px solid var(--border);border-radius:13px;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(37,99,235,.08),transparent 36%),
+    linear-gradient(180deg,#0c1523,#0a121e);
+  overflow:hidden
+}
+.demo-house-scene{width:min(680px,100%);position:relative;padding-top:72px}
+.demo-house-roof{
+  position:absolute;left:8%;right:8%;top:0;height:125px;
+  clip-path:polygon(50% 0,100% 82%,92% 82%,92% 100%,8% 100%,8% 82%,0 82%);
+  background:linear-gradient(180deg,#27364a,#1c293b);
+  border:1px solid #3b4d65;filter:drop-shadow(0 18px 22px rgba(0,0,0,.26))
+}
+.demo-house-body{
+  position:relative;z-index:2;min-height:245px;padding:35px 40px 26px;
+  display:grid;grid-template-columns:1fr .8fr 1fr;align-items:end;gap:28px;
+  border:1px solid #3b4b60;border-radius:8px 8px 14px 14px;
+  background:linear-gradient(180deg,#253247,#1a2637);box-shadow:0 30px 50px rgba(0,0,0,.3)
+}
+.demo-window,.demo-door{
+  position:relative;border:2px solid #62748c;background:#152235;color:white;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.025);
+  transition:.18s ease
+}
+.demo-window{height:92px;border-radius:5px}
+.demo-window::before,.demo-window::after{
+  content:"";position:absolute;background:#53667f
+}
+.demo-window::before{left:50%;top:0;bottom:0;width:2px}
+.demo-window::after{left:0;right:0;top:50%;height:2px}
+.demo-door{width:105px;height:155px;justify-self:center;border-radius:6px 6px 2px 2px}
+.demo-door::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-radius:50%;background:#a7b4c7}
+.demo-window:hover,.demo-door:hover{border-color:#86a9ee;transform:translateY(-2px)}
+.demo-window.is-open,.demo-door.is-open{border-color:#b9892f;background:#2b2417;box-shadow:0 0 0 5px rgba(245,158,11,.08)}
+.demo-window.is-breach,.demo-door.is-breach{border-color:#df5964;background:#2b171b;box-shadow:0 0 0 7px rgba(220,38,38,.1)}
+.demo-device-label{
+  position:absolute;left:50%;bottom:-27px;transform:translateX(-50%);
+  white-space:nowrap;color:#96a6ba;font-size:8px;font-weight:700
+}
+.demo-camera{
+  position:absolute;z-index:6;right:13%;top:103px;width:44px;height:44px;
+  display:grid;place-items:center;border:1px solid #47628f;border-radius:50%;
+  background:#12223b;color:#99b8f8;box-shadow:0 8px 18px rgba(0,0,0,.26);font-size:18px
+}
+.demo-camera:hover{background:#19315a}
+.demo-camera.is-active{border-color:#7c3540;background:#351a20;color:#f7a3aa;animation:pulse 1.1s infinite}
+.demo-house-ground{height:28px;margin:18px 3% 0;border-radius:50%;background:rgba(34,197,94,.07);filter:blur(1px)}
+.visual-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;color:#8796a9;font-size:8px}
+.visual-legend span{display:flex;align-items:center;gap:6px}.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-dot--ok{background:var(--green)}.legend-dot--warn{background:var(--amber)}.legend-dot--danger{background:var(--red)}
+.visual-plan-card{padding:18px;margin-bottom:12px}.visual-home-plan{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:9px}
+.visual-room{
+  min-height:160px;padding:13px;border:1px solid #334258;border-radius:10px;
+  background:linear-gradient(180deg,#111e2f,#0e1928)
+}
+.visual-room h4{margin:0;font-size:11px}.visual-room>small{display:block;margin-top:3px;color:var(--muted);font-size:7px}
+.visual-devices{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.visual-device{
+  min-width:78px;padding:8px;border:1px solid var(--border);border-radius:8px;background:#142134;
+  color:#d9e4ef;text-align:left;font-size:8px
+}
+.visual-device strong,.visual-device small{display:block}.visual-device small{margin-top:2px;color:#8494a8;font-size:7px}
+.visual-device.is-open{border-color:#795b25;background:#2a2113}.visual-device.is-breach{border-color:#74343d;background:#2c181d}
+.visual-device--camera{border-color:#33507f;background:#12213a}
+.visual-empty{grid-column:1/-1;padding:45px;text-align:center;border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-size:10px}
+.network-mode-status{padding-left:12px;border-left:1px solid var(--border)}
+.active-camera-status{padding-left:12px;border-left:1px solid var(--border)}
+.online-note{margin-top:12px!important}
+.camera-source-badge{
+  display:inline-flex;margin-top:8px;padding:5px 7px;border:1px solid var(--border);border-radius:7px;
+  color:#91a0b3;font-size:7px;font-weight:700
+}
+.camera-privacy-note{
+  margin-top:10px;padding:9px;border:1px solid #33445b;border-radius:8px;background:#101b2b;
+  color:#91a0b3;font-size:8px;line-height:1.45
+}
+.camera-privacy-note strong{color:#d9e4ef}
+@media(max-width:1060px){.visual-home-plan{grid-template-columns:repeat(2,minmax(170px,1fr))}}
+@media(max-width:780px){
+  .network-mode-status{display:none}.active-camera-status{display:none}
+  .demo-house-body{padding:28px 20px 22px;gap:14px}.demo-door{width:82px;height:135px}.demo-window{height:78px}
+  .visual-home-plan{grid-template-columns:1fr}
+}
+@media(max-width:520px){.house-visual{padding:12px;min-height:300px}.demo-house-body{gap:8px;padding-left:12px;padding-right:12px}.demo-door{width:65px;height:115px}.demo-window{height:66px}.demo-device-label{display:none}}
+
+
+/* =========================================================
+   CASA SEGURA FINAL — MAQUETA 3D INTERACTIVA
+========================================================= */
+.model-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.house-3d-scene{
+  position:relative;min-height:430px;margin-top:12px;display:grid;place-items:center;
+  overflow:hidden;border:1px solid var(--border);border-radius:13px;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(59,130,246,.10),transparent 33%),
+    linear-gradient(180deg,#0c1523,#070d17);
+  perspective:1050px;touch-action:none;user-select:none
+}
+.house-3d-scene::after{
+  content:"";position:absolute;left:10%;right:10%;bottom:35px;height:45px;border-radius:50%;
+  background:rgba(0,0,0,.28);filter:blur(14px);transform:rotateX(70deg)
+}
+.house-3d-scene--editor{min-height:390px}
+.house-3d-model{
+  position:relative;width:380px;height:260px;transform-style:preserve-3d;
+  transform:rotateX(-24deg) rotateY(32deg) scale(.92);
+  transition:transform .08s linear;z-index:2
+}
+.cs3d-floor,.cs3d-wall,.cs3d-room-floor,.cs3d-partition,.cs3d-roof{
+  position:absolute;transform-style:preserve-3d;backface-visibility:visible
+}
+.cs3d-floor{
+  inset:0;border:1px solid #506078;border-radius:8px;background:
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  #172334;background-size:28px 28px;transform:translateZ(0)
+}
+.cs3d-wall{background:linear-gradient(180deg,#2b394d,#202d40);border:1px solid #53667e;opacity:.98}
+.cs3d-wall--back{left:0;top:0;width:380px;height:120px;transform-origin:top;transform:rotateX(90deg)}
+.cs3d-wall--left{left:0;top:0;width:260px;height:120px;transform-origin:left top;transform:rotateY(-90deg) rotateZ(90deg)}
+.cs3d-wall--right{right:0;top:0;width:260px;height:120px;transform-origin:right top;transform:rotateY(90deg) rotateZ(-90deg)}
+.cs3d-wall--front-left{left:0;bottom:0;width:118px;height:100px;transform-origin:bottom;transform:rotateX(-90deg)}
+.cs3d-wall--front-right{right:0;bottom:0;width:118px;height:100px;transform-origin:bottom;transform:rotateX(-90deg)}
+.cs3d-partition{height:92px;width:2px;background:#617189;transform-origin:bottom}
+.cs3d-partition--a{left:130px;top:40px;transform:translateZ(2px) rotateX(-90deg)}
+.cs3d-partition--b{left:250px;top:120px;transform:translateZ(2px) rotateX(-90deg)}
+.cs3d-room-label{
+  position:absolute;padding:5px 7px;border:1px solid rgba(148,163,184,.25);border-radius:6px;
+  background:rgba(10,18,31,.78);color:#aab9cb;font-size:8px;font-weight:700;
+  transform:translateZ(5px);pointer-events:none
+}
+.cs3d-device{
+  position:absolute;z-index:20;min-width:36px;height:36px;padding:0 7px;display:grid;place-items:center;
+  border:1px solid #4f6381;border-radius:9px;background:#13233a;color:#b9cffc;
+  box-shadow:0 8px 15px rgba(0,0,0,.25);font-size:10px;font-weight:800;
+  transform:translateZ(18px);transition:.16s ease
+}
+.cs3d-device:hover{transform:translateZ(27px) scale(1.06);border-color:#8cadf4}
+.cs3d-device.is-open{border-color:#8d6828;background:#302613;color:#f6c85f}
+.cs3d-device.is-breach{border-color:#8d3c45;background:#35191e;color:#f8a3aa;box-shadow:0 0 0 6px rgba(220,38,38,.10)}
+.cs3d-device.is-camera-active{border-color:#8d3c45;background:#35191e;color:#f8a3aa;animation:pulse 1.1s infinite}
+.cs3d-door{
+  position:absolute;left:159px;bottom:-2px;width:62px;height:88px;border:2px solid #697b94;
+  border-bottom:0;background:#172337;transform-origin:bottom;transform:rotateX(-90deg) translateZ(1px)
+}
+.cs3d-door::after{content:"";position:absolute;right:9px;top:42px;width:6px;height:6px;border-radius:50%;background:#b4c0d0}
+.cs3d-window{
+  position:absolute;width:74px;height:48px;border:2px solid #6580a8;background:#10213a;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.025)
+}
+.cs3d-window::before,.cs3d-window::after{content:"";position:absolute;background:#6680a4}
+.cs3d-window::before{left:50%;top:0;bottom:0;width:2px}.cs3d-window::after{left:0;right:0;top:50%;height:2px}
+.cs3d-window--left{left:20px;bottom:16px;transform-origin:bottom;transform:rotateX(-90deg)}
+.cs3d-window--right{right:20px;bottom:16px;transform-origin:bottom;transform:rotateX(-90deg)}
+.cs3d-status-panel{
+  position:absolute;right:12px;top:12px;min-width:138px;padding:9px;border:1px solid var(--border);
+  border-radius:9px;background:rgba(10,18,30,.88);box-shadow:0 10px 22px rgba(0,0,0,.22);
+  color:#a9b7c8;font-size:8px;line-height:1.45;z-index:4;pointer-events:none
+}
+.cs3d-status-panel strong{display:block;color:#e5edf7;font-size:9px;margin-bottom:3px}
+.cs3d-hint{position:absolute;left:12px;bottom:10px;color:#65758a;font-size:8px;z-index:4}
+.remote-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.settings-card--wide{grid-column:span 2}
+.remote-health-ok{color:#86efac}.remote-health-error{color:#fca5a5}
+
+@media(max-width:720px){
+  .house-3d-model{transform:rotateX(-24deg) rotateY(30deg) scale(.72)}
+  .house-3d-scene{min-height:360px}
+  .settings-card--wide{grid-column:auto}
+}
+@media(max-width:500px){
+  .house-3d-model{transform:rotateX(-25deg) rotateY(32deg) scale(.58)}
+  .house-3d-scene{min-height:320px}
+}
+
+
+/* =========================================================
+   CASA SEGURA FINAL — PLANO 2.5D CORREGIDO
+   Default: vista planta completamente derecha.
+========================================================= */
+.house-view-toolbar .mini-btn.is-selected{
+  border-color:#4b70aa;background:#18305a;color:#d7e5ff
+}
+.house-25d-scene{
+  position:relative;min-height:470px;margin-top:12px;overflow:hidden;
+  border:1px solid var(--border);border-radius:13px;
+  background:
+    linear-gradient(rgba(148,163,184,.035) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(148,163,184,.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 42%,rgba(37,99,235,.08),transparent 38%),
+    #09111d;
+  background-size:28px 28px,28px 28px,auto,auto;
+  touch-action:pan-y
+}
+.house-25d-scene--editor{min-height:420px}
+.house-25d-stage{
+  position:absolute;left:50%;top:50%;width:760px;height:500px;
+  transform:translate(-50%,-50%);
+  transform-origin:center center;
+  will-change:transform;
+  transition:filter .16s ease
+}
+.house-25d-stage.is-oblique{
+  filter:drop-shadow(0 24px 28px rgba(0,0,0,.22))
+}
+.cs-house-svg{width:100%;height:100%;overflow:visible}
+.cs-house-shadow{fill:rgba(0,0,0,.24)}
+.cs-house-shell{fill:#172335;stroke:#52627a;stroke-width:12;stroke-linejoin:round}
+.cs-house-room{fill:#111c2b;stroke:#34445a;stroke-width:4}
+.cs-house-room.alt{fill:#132033}
+.cs-house-room-label{
+  fill:#a9b8ca;font:700 16px "Segoe UI",sans-serif;letter-spacing:.02em;
+  text-anchor:middle;pointer-events:none
+}
+.cs-house-room-sub{
+  fill:#718199;font:500 11px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none
+}
+.cs-house-door{
+  fill:#243449;stroke:#7d8da1;stroke-width:4;cursor:pointer;transition:.15s ease
+}
+.cs-house-door-leaf{stroke:#9caabd;stroke-width:7;stroke-linecap:round;pointer-events:none}
+.cs-house-door-arc{fill:none;stroke:#66778d;stroke-width:2;stroke-dasharray:4 5;pointer-events:none}
+.cs-house-window{
+  fill:#10253f;stroke:#6d89b2;stroke-width:5;cursor:pointer;transition:.15s ease
+}
+.cs-house-window-line{stroke:#7f9dc9;stroke-width:3;pointer-events:none}
+.cs-house-device-open{fill:#302611!important;stroke:#d39a33!important}
+.cs-house-device-breach{fill:#35181d!important;stroke:#dc5661!important;filter:drop-shadow(0 0 8px rgba(220,38,38,.32))}
+.cs-house-camera{
+  fill:#132847;stroke:#5f83ba;stroke-width:3;cursor:pointer
+}
+.cs-house-camera.active{fill:#35181e;stroke:#de5b67}
+.cs-house-camera-lens{fill:#b9cef2;pointer-events:none}
+.cs-house-sensor-dot{fill:#16a34a;stroke:#0b1220;stroke-width:3;pointer-events:none}
+.cs-house-sensor-dot.open{fill:#f59e0b}
+.cs-house-sensor-dot.breach{fill:#dc2626}
+.cs-house-device-label{
+  fill:#d3dbe6;font:700 11px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none
+}
+.cs-house-furniture{fill:#18283b;stroke:#2e4159;stroke-width:2;pointer-events:none}
+.cs-house-furniture-line{stroke:#30465f;stroke-width:2;pointer-events:none}
+.cs-house-path{fill:#0c1624;stroke:#26364a;stroke-width:2}
+.cs-house-patio{fill:#10251f;stroke:#2f5749;stroke-width:3}
+.cs-house-badge{fill:#0b1625;stroke:#344c6d;stroke-width:2}
+.cs-house-badge-text{fill:#a9bfeb;font:800 10px "Segoe UI",sans-serif;text-anchor:middle}
+.house-scene-hint{
+  position:absolute;left:12px;bottom:10px;z-index:3;padding:7px 9px;
+  border:1px solid rgba(148,163,184,.12);border-radius:7px;
+  background:rgba(9,17,29,.84);color:#75869b;font-size:8px;pointer-events:none
+}
+.house-25d-scene.is-dragging{cursor:grabbing}
+.house-25d-scene:not(.is-dragging){cursor:grab}
+@media(max-width:900px){
+  .house-25d-stage{width:660px;height:435px}
+}
+@media(max-width:650px){
+  .house-25d-scene{min-height:390px}
+  .house-25d-stage{width:560px;height:370px}
+  .house-scene-hint{display:none}
+}
+
+
+/* =========================================================
+   CASA SEGURA — CASA DEMO INTERACTIVA
+========================================================= */
+.mode-toggle-button{
+  min-height:36px;padding:0 11px;display:flex;align-items:center;gap:7px;
+  border:1px solid #34445c;border-radius:9px;background:#121e2e;color:#c9d5e3;
+  font-size:9px;font-weight:800;letter-spacing:.02em
+}
+.mode-toggle-button:hover{border-color:#4c6792;background:#17263b}
+.mode-toggle-button.is-online{border-color:#286b44;background:#10271d;color:#bbf7d0}
+.mode-toggle-led{width:8px;height:8px;border-radius:50%;background:#64748b}
+.mode-toggle-button.is-online .mode-toggle-led{background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.1)}
+
+.house-sim-toolbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.house-sim-toolbar .mini-btn.is-selected{border-color:#4d70aa;background:#17315b;color:#d8e6ff}
+.toolbar-separator{width:1px;height:25px;background:var(--border);margin:0 2px}
+
+.house-sim-scene{
+  position:relative;min-height:535px;margin-top:12px;overflow:hidden;
+  border:1px solid var(--border);border-radius:14px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(37,99,235,.09),transparent 38%),
+    linear-gradient(#0b1523,#08111d);
+  touch-action:pan-y
+}
+.house-sim-scene--editor{min-height:450px}
+.house-sim-stage{
+  position:absolute;left:50%;top:50%;width:1000px;height:650px;
+  transform:translate(-50%,-50%) scale(.78);
+  transform-origin:center;will-change:transform
+}
+.house-sim-svg{width:100%;height:100%;overflow:visible}
+
+.sim-ground{fill:#0d1f1a}
+.sim-path{fill:#17202a;stroke:#263548;stroke-width:2}
+.sim-house-shadow{fill:rgba(0,0,0,.28)}
+.sim-floor{fill:#d8d0c4;stroke:#6d7887;stroke-width:5}
+.sim-floor-kitchen{fill:#c7c1b7}
+.sim-floor-bedroom{fill:#d3c9bf}
+.sim-floor-bath{fill:#c5ced2}
+.sim-floor-hall{fill:#cfc6b8}
+.sim-wall{stroke:#344255;stroke-width:15;stroke-linecap:square}
+.sim-wall-inner{stroke:#526072;stroke-width:9;stroke-linecap:square}
+.sim-room-name{fill:#354153;font:800 15px "Segoe UI",sans-serif;letter-spacing:.04em;text-anchor:middle;pointer-events:none}
+.sim-room-sub{fill:#687487;font:600 10px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none}
+
+/* muebles */
+.sim-furniture{fill:#7b685b;stroke:#53463e;stroke-width:2}
+.sim-furniture-dark{fill:#4d5662;stroke:#39414a;stroke-width:2}
+.sim-furniture-light{fill:#b9afa4;stroke:#80766e;stroke-width:2}
+.sim-bed{fill:#8390a1;stroke:#596474;stroke-width:3}
+.sim-pillow{fill:#d8dde3}
+.sim-counter{fill:#747a7c;stroke:#4d5355;stroke-width:2}
+.sim-appliance{fill:#343d48;stroke:#222a33;stroke-width:2}
+.sim-water{fill:#7397ad;opacity:.55}
+.sim-rug{fill:#8e7969;opacity:.7}
+.sim-plant{fill:#4d765d;stroke:#365642;stroke-width:2}
+.sim-pot{fill:#836656}
+
+/* puerta física */
+.sim-access{cursor:pointer}
+.sim-door-frame{stroke:#29394c;stroke-width:12}
+.sim-door-leaf{
+  stroke:#745845;stroke-width:13;stroke-linecap:round;
+  transform-origin:0px 0px;transform-box:view-box;
+  transition:transform .38s cubic-bezier(.2,.75,.25,1)
+}
+.sim-door-swing{fill:none;stroke:#8b96a5;stroke-width:2;stroke-dasharray:5 6;opacity:.42}
+.sim-door.is-open .sim-door-leaf{transform:rotate(-78deg)}
+.sim-door.is-breach .sim-door-leaf{stroke:#b33e49}
+.sim-door-status{fill:#16a34a;stroke:#eef3f8;stroke-width:2}
+.sim-door.is-open .sim-door-status{fill:#f59e0b}
+.sim-door.is-breach .sim-door-status{fill:#dc2626}
+
+/* ventana visible y animada */
+.sim-window-frame{fill:#27405b;stroke:#516f91;stroke-width:4}
+.sim-window-glass{fill:#85aeca;fill-opacity:.55;stroke:#a7c9de;stroke-width:2}
+.sim-window-pane-a,.sim-window-pane-b{
+  transition:transform .34s cubic-bezier(.2,.75,.25,1);
+  transform-box:view-box;transform-origin:center
+}
+.sim-window.is-open .sim-window-pane-a{transform:translateX(-22px)}
+.sim-window.is-open .sim-window-pane-b{transform:translateX(22px)}
+.sim-window.is-breach .sim-window-frame{stroke:#c54854;fill:#4b2228}
+.sim-window-status{fill:#16a34a;stroke:#eef3f8;stroke-width:2}
+.sim-window.is-open .sim-window-status{fill:#f59e0b}
+.sim-window.is-breach .sim-window-status{fill:#dc2626}
+
+/* cámara */
+.sim-camera{cursor:pointer}
+.sim-camera-body{fill:#334c6d;stroke:#6b8eba;stroke-width:3}
+.sim-camera-lens{fill:#a9c8ec}
+.sim-camera.active .sim-camera-body{fill:#5a2229;stroke:#db6570}
+.sim-camera.active{animation:pulse 1.1s infinite}
+
+/* persona */
+.sim-person{
+  pointer-events:none;
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.24))
+}
+.sim-person-shadow{fill:rgba(0,0,0,.22)}
+.sim-person-body{fill:#315fae;stroke:#1d4079;stroke-width:2}
+.sim-person-head{fill:#d8af8f;stroke:#9a7258;stroke-width:2}
+.sim-person-leg{stroke:#2b3440;stroke-width:7;stroke-linecap:round}
+.sim-person-arm{stroke:#315fae;stroke-width:7;stroke-linecap:round}
+
+.sim-roof{
+  fill:#27364a;stroke:#485970;stroke-width:8;opacity:0;
+  transition:opacity .28s ease;pointer-events:none
+}
+.house-sim-stage.is-exterior .sim-roof{opacity:.94}
+.house-sim-stage.is-exterior .sim-interior-detail{opacity:.16}
+.sim-interior-detail{transition:opacity .28s ease}
+
+.sim-person-panel{
+  position:absolute;right:12px;bottom:12px;z-index:8;width:220px;padding:11px;
+  border:1px solid #2c3e55;border-radius:11px;background:rgba(9,17,29,.93);
+  box-shadow:0 14px 28px rgba(0,0,0,.24)
+}
+.sim-person-panel small,.sim-person-panel strong{display:block}
+.sim-person-panel small{color:#6f82a0;font-size:7px;font-weight:900;letter-spacing:.12em}
+.sim-person-panel strong{margin-top:3px;color:#e5edf7;font-size:11px}
+.sim-control-primary{
+  width:100%;min-height:34px;margin-top:9px;border:1px solid #3f5f91;border-radius:8px;
+  background:#16305a;color:#dbeafe;font-size:8px;font-weight:800
+}
+.sim-destinations{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;margin-top:7px}
+.sim-destinations button{
+  min-height:30px;border:1px solid #2d4058;border-radius:7px;background:#111e2e;color:#aebdce;
+  font-size:7px;font-weight:700
+}
+.sim-destinations button:hover{border-color:#496d9e;color:#e5edf7}
+.sim-alert-wave{fill:none;stroke:#dc2626;stroke-width:3;opacity:0}
+.house-sim-stage.is-alarm .sim-alert-wave{animation:simWave 1.4s infinite}
+@keyframes simWave{
+  0%{opacity:.65;transform:scale(.7);transform-origin:center}
+  100%{opacity:0;transform:scale(1.6);transform-origin:center}
+}
+@media(max-width:960px){
+  .house-sim-stage{transform:translate(-50%,-50%) scale(.67)}
+  .house-sim-scene{min-height:500px}
+}
+@media(max-width:700px){
+  .house-sim-stage{transform:translate(-50%,-50%) scale(.54)}
+  .house-sim-scene{min-height:440px}
+  .sim-person-panel{width:190px}
+}
+@media(max-width:500px){
+  .house-sim-stage{transform:translate(-50%,-50%) scale(.43)}
+  .house-sim-scene{min-height:390px}
+  .sim-person-panel{left:8px;right:8px;bottom:8px;width:auto}
+  .sim-destinations{grid-template-columns:repeat(3,1fr)}
+}
+
+
+/* =========================================================
+   CASA SEGURA — CASA DEMO PRO / DOLLHOUSE
+========================================================= */
+.house-pro-toolbar{
+  margin-top:12px;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;flex-wrap:wrap
+}
+.house-pro-view-tabs,.house-pro-camera-controls{display:flex;gap:6px;flex-wrap:wrap}
+.house-pro-toolbar .mini-btn.is-selected{
+  border-color:#4c6f9f;background:#17315b;color:#dbeafe
+}
+.house-pro-scene{
+  position:relative;min-height:520px;margin-top:12px;overflow:hidden;
+  border:1px solid #26364b;border-radius:14px;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(65,108,170,.12),transparent 36%),
+    linear-gradient(180deg,#0d1725,#08111c);
+  touch-action:pan-y
+}
+.house-pro-scene--editor{min-height:430px}
+.house-pro-scene canvas{
+  position:absolute;inset:0;width:100%;height:100%;display:block
+}
+.house-pro-top-status{
+  position:absolute;left:12px;top:12px;z-index:3;display:flex;gap:12px;flex-wrap:wrap;
+  padding:7px 9px;border:1px solid rgba(148,163,184,.12);border-radius:8px;
+  background:rgba(8,16,27,.78);backdrop-filter:blur(8px);
+  color:#8d9db0;font-size:8px;pointer-events:none
+}
+.house-pro-top-status span{display:flex;align-items:center;gap:6px}
+.house-pro-hint{
+  position:absolute;left:12px;bottom:10px;z-index:3;
+  padding:7px 9px;border:1px solid rgba(148,163,184,.10);border-radius:7px;
+  background:rgba(8,16,27,.76);color:#69798d;font-size:8px;pointer-events:none
+}
+.house-pro-console{
+  display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:10px;margin-top:10px
+}
+.house-pro-selection,.house-pro-walk{
+  min-height:92px;padding:13px;border:1px solid var(--border-soft);
+  border-radius:11px;background:#101a29
+}
+.house-pro-selection strong,.house-pro-selection span{display:block}
+.house-pro-selection strong{margin-top:4px;font-size:11px}
+.house-pro-selection span{margin-top:5px;color:#8797aa;font-size:8px;line-height:1.5}
+.house-pro-selection .btn{margin-top:9px}
+.house-pro-walk-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.house-pro-walk-head strong{display:block;margin-top:4px;font-size:11px}
+.house-pro-destinations{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin-top:10px
+}
+.house-pro-destinations button{
+  min-height:32px;padding:0 6px;border:1px solid #2d4058;border-radius:7px;
+  background:#111e2e;color:#aebdce;font-size:7px;font-weight:750
+}
+.house-pro-destinations button:hover{border-color:#4c6d98;color:#e7edf6}
+@media(max-width:920px){
+  .house-pro-console{grid-template-columns:1fr}
+  .house-pro-destinations{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:620px){
+  .house-pro-scene{min-height:430px}
+  .house-pro-toolbar{align-items:flex-start;flex-direction:column}
+  .house-pro-destinations{grid-template-columns:repeat(2,1fr)}
+  .house-pro-hint{display:none}
+}
+
+
+/* =========================================================
+   CASA SEGURA — INTERFAZ PROFESIONAL DE CASA DEMO
+========================================================= */
+.security-house-layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:12px;margin-top:14px
+}
+.security-house-main,.security-house-side{
+  min-width:0
+}
+.security-house-tabs{
+  width:max-content;max-width:100%;display:flex;margin:0 auto 10px;
+  border:1px solid #29405d;border-radius:10px;overflow:hidden;background:#0d1929
+}
+.security-tab{
+  min-width:125px;min-height:42px;padding:0 17px;border:0;border-right:1px solid #29405d;
+  background:#101b2b;color:#9dabc0;font-size:10px;font-weight:750
+}
+.security-tab:last-child{border-right:0}
+.security-tab.is-active{background:#174286;color:#e8f1ff;box-shadow:inset 0 -2px #4d9cff}
+.security-house-scene{
+  position:relative;min-height:430px;overflow:hidden;border:1px solid #25384f;border-radius:12px;
+  background:#07111d;perspective:1400px;touch-action:pan-y
+}
+.security-house-transform{
+  position:absolute;left:50%;top:50%;width:100%;height:100%;
+  transform:translate(-50%,-50%) scale(1);
+  transform-origin:center;transition:transform .24s ease;will-change:transform
+}
+.security-house-image{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  user-select:none;pointer-events:none
+}
+.security-device-layer{position:absolute;inset:0;z-index:4}
+.security-house-legend{
+  position:absolute;left:12px;top:12px;z-index:10;display:flex;gap:12px;flex-wrap:wrap;
+  padding:7px 9px;border:1px solid rgba(148,163,184,.12);border-radius:8px;
+  background:rgba(8,16,27,.82);backdrop-filter:blur(8px);
+  color:#9cabbd;font-size:8px
+}
+.security-house-legend span{display:flex;align-items:center;gap:6px}
+
+.house-device-object{
+  position:absolute;border:0;background:transparent;padding:0;z-index:5;
+  transform-origin:center;cursor:pointer
+}
+.house-device-object:focus-visible{outline:2px solid #5ea1ff;outline-offset:4px}
+.house-device-object .device-pin{
+  position:absolute;right:-9px;top:-9px;width:15px;height:15px;border-radius:50%;
+  border:2px solid #eef5ff;background:#16a34a;box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:8
+}
+.house-device-object.is-open .device-pin{background:#f59e0b}
+.house-device-object.is-alarm .device-pin{
+  background:#dc2626;animation:devicePulse 1s infinite
+}
+@keyframes devicePulse{50%{box-shadow:0 0 0 8px rgba(220,38,38,.12)}}
+
+/* Puertas: la hoja realmente gira */
+.house-door-object{
+  perspective:480px
+}
+.house-door-object .door-leaf{
+  position:absolute;inset:0;border:1px solid rgba(59,41,28,.9);border-radius:2px;
+  background:linear-gradient(90deg,#513521,#76503a 35%,#62402d 72%,#41291d);
+  box-shadow:0 4px 10px rgba(0,0,0,.24);
+  transform-origin:left center;transform:rotateY(0deg);transition:transform .46s cubic-bezier(.2,.72,.24,1)
+}
+.house-door-object .door-leaf::before{
+  content:"";position:absolute;inset:8% 13%;border:1px solid rgba(236,209,178,.18)
+}
+.house-door-object .door-leaf::after{
+  content:"";position:absolute;right:9%;top:50%;width:5px;height:5px;border-radius:50%;background:#d6a85e
+}
+.house-door-object.is-open .door-leaf{transform:rotateY(-72deg)}
+.house-door-object.side-open .door-leaf{transform-origin:right center}
+.house-door-object.side-open.is-open .door-leaf{transform:rotateY(72deg)}
+
+/* Ventanas: paneles corredizos visibles */
+.house-window-object{
+  overflow:visible;background:#0c2032;border:2px solid #516f91;border-radius:3px;
+  box-shadow:0 2px 7px rgba(0,0,0,.22)
+}
+.house-window-object .window-pane{
+  position:absolute;top:4%;bottom:4%;width:48%;border:1px solid rgba(194,222,240,.7);
+  background:linear-gradient(135deg,rgba(145,194,220,.72),rgba(55,103,139,.46));
+  transition:transform .38s cubic-bezier(.2,.72,.24,1)
+}
+.house-window-object .window-pane--a{left:2%}
+.house-window-object .window-pane--b{right:2%}
+.house-window-object.is-open .window-pane--a{transform:translateX(-42%)}
+.house-window-object.is-open .window-pane--b{transform:translateX(42%)}
+.house-window-object.is-alarm{border-color:#d9535e;background:#30161b}
+
+/* Cámara */
+.house-camera-object{
+  width:34px;height:27px;border:2px solid #688ab3;border-radius:7px;background:#254261;
+  box-shadow:0 4px 10px rgba(0,0,0,.25)
+}
+.house-camera-object::before{
+  content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;
+  background:#c9ddf2
+}
+.house-camera-object::after{
+  content:"";position:absolute;right:-13px;top:5px;border-left:13px solid #688ab3;
+  border-top:7px solid transparent;border-bottom:7px solid transparent
+}
+
+/* Coordenadas preconfiguradas sobre la imagen aprobada */
+[data-house-device="door-main"]{left:37.0%;top:50%;width:7.0%;height:31%}
+[data-house-device="door-kitchen"]{left:52.0%;top:31%;width:5.0%;height:20%}
+[data-house-device="door-bedroom2"]{left:22.0%;top:10%;width:5.0%;height:18%}
+[data-house-device="door-bathroom"]{left:49.0%;top:9%;width:4.2%;height:16%}
+[data-house-device="door-bedroom1"]{left:63.0%;top:10%;width:5.0%;height:18%}
+
+[data-house-device="window-living"]{left:9.0%;top:53%;width:22%;height:18%}
+[data-house-device="window-living-side"]{left:3.0%;top:25%;width:3.0%;height:14%;transform:rotate(1deg)}
+[data-house-device="window-kitchen-front"]{left:58.0%;top:54%;width:24%;height:16%}
+[data-house-device="window-kitchen-side"]{left:91.0%;top:28%;width:3.0%;height:14%}
+[data-house-device="window-bedroom2"]{left:5.0%;top:17%;width:3.0%;height:12%}
+[data-house-device="window-bedroom"]{left:88.0%;top:18%;width:3.0%;height:12%}
+[data-house-device="window-bathroom"]{left:46.5%;top:4.0%;width:7.0%;height:8%}
+[data-house-device="camera-entry"]{left:33.0%;top:48%;}
+
+/* Persona */
+.house-person{
+  position:absolute;left:49%;top:79%;width:18px;height:44px;z-index:7;
+  transition:left .9s cubic-bezier(.2,.7,.2,1),top .9s cubic-bezier(.2,.7,.2,1);
+  filter:drop-shadow(0 5px 4px rgba(0,0,0,.32))
+}
+.person-head{position:absolute;left:5px;top:0;width:9px;height:9px;border-radius:50%;background:#c99b7d}
+.person-body{position:absolute;left:4px;top:9px;width:11px;height:20px;border-radius:6px 6px 4px 4px;background:#24508d}
+.person-leg{position:absolute;top:27px;width:4px;height:17px;border-radius:3px;background:#1f2d3e}
+.person-leg--l{left:5px;transform:rotate(5deg)}.person-leg--r{left:10px;transform:rotate(-5deg)}
+
+.house-exterior-layer{
+  position:absolute;inset:0;z-index:3;background:linear-gradient(#0c2238 0 58%,#11271b 58%);
+}
+.exterior-sky{position:absolute;inset:0 0 42% 0;background:radial-gradient(circle at 76% 14%,rgba(255,255,255,.12),transparent 18%),linear-gradient(#0b1b2e,#173550)}
+.exterior-house{position:absolute;left:17%;right:17%;top:22%;bottom:16%}
+.exterior-roof{
+  position:absolute;left:4%;right:4%;top:0;height:34%;
+  clip-path:polygon(50% 0,100% 82%,88% 82%,88% 100%,12% 100%,12% 82%,0 82%);
+  background:linear-gradient(#26384c,#182536);filter:drop-shadow(0 12px 16px rgba(0,0,0,.28))
+}
+.exterior-wall{position:absolute;left:9%;right:9%;top:29%;bottom:8%;background:#c9c2b8;border:4px solid #637083;border-radius:4px}
+.exterior-door{position:absolute;left:45%;bottom:0;width:11%;height:54%;background:linear-gradient(90deg,#5a3926,#79503a);border:3px solid #3c281d}
+.exterior-window{position:absolute;top:28%;width:20%;height:26%;display:flex;border:4px solid #56718f;background:#17324a}
+.exterior-window--left{left:13%}.exterior-window--right{right:13%}
+.exterior-window i{flex:1;border-right:2px solid #86a8c7;background:linear-gradient(135deg,#8bb0c9,#365a76)}
+.exterior-window i:last-child{border-right:0}
+.exterior-garden{position:absolute;left:3%;right:3%;bottom:0;height:12%;border-radius:50%;background:#183b29}
+
+.walk-controls{
+  margin-top:9px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border:1px solid var(--border-soft);border-radius:10px;background:#101a29
+}
+.walk-controls strong{display:block;margin-top:3px;font-size:10px}
+.walk-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.walk-actions>button:not(.btn){
+  min-height:32px;padding:0 9px;border:1px solid #2d4058;border-radius:7px;background:#111e2e;color:#b0bed0;font-size:8px;font-weight:700
+}
+
+.security-house-side{
+  padding:14px;border:1px solid #24364d;border-radius:12px;background:#0f1928
+}
+.house-control-section{padding-bottom:14px;border-bottom:1px solid #2a3b51}
+.house-control-section h3{margin:4px 0 5px;font-size:13px}
+.house-control-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.house-control-grid button{
+  min-height:74px;padding:8px;border:1px solid #38516f;border-radius:9px;background:#142238;color:#d2ddeb
+}
+.house-control-grid strong,.house-control-grid span{display:block}
+.house-control-grid strong{font-size:23px;font-weight:500}.house-control-grid span{margin-top:4px;font-size:8px;font-weight:700}
+.house-reset-view{
+  width:100%;min-height:40px;margin-top:8px;border:1px solid #38516f;border-radius:9px;background:#142238;color:#d2ddeb;font-size:9px;font-weight:750
+}
+.selected-device-panel{padding-top:14px}
+.selected-device-preview{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center;margin-top:10px}
+.selected-device-icon{
+  width:64px;height:74px;display:grid;place-items:center;border:1px solid #31465f;border-radius:8px;background:#152235;color:#9cb5d6;font-size:25px
+}
+.selected-device-preview strong{display:block;font-size:11px}
+.selected-state{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:9px;font-weight:800}
+.selected-state::before{content:"";width:9px;height:9px;border-radius:50%}
+.selected-state--safe{color:#86efac}.selected-state--safe::before{background:#22c55e}
+.selected-state--open{color:#fbbf24}.selected-state--open::before{background:#f59e0b}
+.selected-state--alarm{color:#fca5a5}.selected-state--alarm::before{background:#ef4444}
+.selected-device-detail{min-height:35px;margin:10px 0;color:#8797aa;font-size:8px;line-height:1.55}
+
+.sensor-status-section{
+  margin-top:12px;padding:14px;border:1px solid #24364d;border-radius:12px;background:#0f1928
+}
+.sensor-status-legend{display:flex;gap:13px;flex-wrap:wrap;color:#8f9db0;font-size:8px}
+.sensor-status-legend span{display:flex;align-items:center;gap:6px}
+.sensor-status-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:11px
+}
+.sensor-status-card{
+  min-height:58px;padding:9px 10px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:9px;align-items:center;
+  border:1px solid #253951;border-radius:8px;background:#132135
+}
+.sensor-status-icon{
+  width:34px;height:34px;display:grid;place-items:center;border:1px solid #4b6482;border-radius:7px;color:#a8bad0;font-size:17px
+}
+.sensor-status-card strong,.sensor-status-card span{display:block}
+.sensor-status-card strong{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sensor-status-card span{margin-top:4px;font-size:8px;font-weight:800}
+.sensor-status-card.is-safe span{color:#86efac}
+.sensor-status-card.is-open span{color:#fbbf24}
+.sensor-status-card.is-alarm span{color:#fca5a5}
+.sensor-status-card.is-alarm{border-color:#66313a;background:#28171b}
+
+.home-security-preview{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:12px;margin-top:12px}
+.home-security-preview img{display:block;width:100%;aspect-ratio:2.2/1;object-fit:cover}
+.home-security-preview-overlay{
+  position:absolute;left:10px;bottom:10px;padding:6px 8px;border-radius:6px;background:rgba(8,16,27,.82);color:#9db0c6;font-size:8px;font-weight:800
+}
+
+@media(max-width:1150px){
+  .security-house-layout{grid-template-columns:1fr}
+  .security-house-side{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .selected-device-panel{padding-top:0;padding-left:14px;border-left:1px solid #2a3b51}
+  .sensor-status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:820px){
+  .security-house-scene{min-height:360px}
+  .security-house-side{display:block}
+  .selected-device-panel{padding-top:14px;padding-left:0;border-left:0}
+  .sensor-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .security-tab{min-width:0;flex:1;padding:0 10px}
+  .security-house-tabs{width:100%}
+  .security-house-scene{min-height:300px}
+  .sensor-status-grid{grid-template-columns:1fr}
+  .walk-controls{align-items:flex-start;flex-direction:column}
+  .walk-actions{justify-content:flex-start}
+}
+
+
+/* =========================================================
+   CASA SEGURA — VERSIÓN FINAL / VIVIENDA EDITABLE
+========================================================= */
+.home-mode-strip{
+  margin-bottom:12px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:15px;
+  border:1px solid #26384e;border-radius:11px;background:#0f1928
+}
+.home-mode-copy strong,.home-mode-copy span{display:block}
+.home-mode-copy strong{margin-top:4px;font-size:12px}
+.home-mode-copy span{margin-top:4px;color:#8291a4;font-size:8px}
+.home-mode-state{
+  min-width:74px;padding:7px 10px;border:1px solid #3c5681;border-radius:8px;background:#152744;
+  color:#9fbcf5;font-size:8px;font-weight:900;text-align:center;letter-spacing:.08em
+}
+.home-mode-state.is-user{
+  border-color:#316144;background:#12271d;color:#9ae6b4
+}
+
+.visual-zone-badge{
+  display:inline-flex;margin-top:4px;padding:3px 6px;border:1px solid #32465f;border-radius:6px;
+  color:#8ea0b6;font-size:7px;font-weight:700
+}
+.device-edit-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.device-edit-row button{
+  min-height:27px;padding:0 8px;border:1px solid #31445d;border-radius:6px;
+  background:#142134;color:#aebbd0;font-size:7px;font-weight:700
+}
+.device-edit-row button:hover{border-color:#4c6f9f;color:#e2ebf5}
+
+.custom-device-marker{
+  position:absolute;z-index:5;min-width:32px;min-height:28px;padding:3px 6px;
+  border:2px solid #577293;border-radius:7px;background:#14283f;color:#d5e2ef;
+  font-size:8px;font-weight:850;box-shadow:0 5px 12px rgba(0,0,0,.25);cursor:pointer;
+  transform:translate(-50%,-50%);transition:.16s ease
+}
+.custom-device-marker::after{
+  content:"";position:absolute;right:-7px;top:-7px;width:11px;height:11px;border-radius:50%;
+  border:2px solid #edf5ff;background:#16a34a
+}
+.custom-device-marker.is-open{border-color:#9b762c;background:#2e2515}
+.custom-device-marker.is-open::after{background:#f59e0b}
+.custom-device-marker.is-alarm{border-color:#9f3c47;background:#32191d}
+.custom-device-marker.is-alarm::after{background:#dc2626}
+.custom-device-marker.is-camera{border-radius:50%;min-width:34px;min-height:34px}
+.custom-device-marker.is-motion{border-style:dashed}
+.custom-device-marker:hover{transform:translate(-50%,-50%) scale(1.06)}
+
+.home-copy-note{
+  margin-top:10px;padding:9px;border:1px solid #2f435c;border-radius:8px;
+  background:#101c2c;color:#8fa0b4;font-size:8px;line-height:1.45
+}
+@media(max-width:700px){
+  .home-mode-strip{align-items:flex-start;flex-direction:column}
+}
+
+
+/* =========================================================
+   CASA SEGURA — BASE DE DATOS / PRODUCCIÓN
+========================================================= */
+.database-overview{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px
+}
+.database-status-card{padding:15px}
+.database-status-card strong,.database-status-card span{display:block}
+.database-status-card strong{margin-top:5px;font-size:14px}
+.database-status-card span{margin-top:5px;color:#8393a7;font-size:8px;line-height:1.45}
+.database-browser{padding:15px}
+.database-browser-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.database-browser-head h3{margin:3px 0 0}
+.database-table-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:13px 0 10px}
+.database-table-tabs button{
+  min-height:34px;padding:0 11px;border:1px solid #30445e;border-radius:7px;
+  background:#111e2e;color:#a8b7c9;font-size:8px;font-weight:750
+}
+.database-table-tabs button.is-active{border-color:#4b70a8;background:#17305a;color:#dbeafe}
+.database-table-message{
+  min-height:30px;padding:7px 9px;margin-bottom:8px;border:1px solid #26394f;border-radius:7px;
+  background:#0e1928;color:#8595a8;font-size:8px
+}
+.database-table-scroll{max-height:440px}
+#database-record-table{min-width:760px}
+#database-record-table th{position:sticky;top:0;z-index:2;background:#111d2c}
+#database-record-table td{
+  max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.db-null{color:#607086;font-style:italic}
+.db-bool-true{color:#86efac}.db-bool-false{color:#fbbf24}
+@media(max-width:900px){.database-overview{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   NOTIFICACIONES — GESTIÓN Y ELIMINACIÓN
+========================================================= */
+.notification-header-actions{display:flex;align-items:center;gap:7px}
+.notification-clear-btn{
+  min-height:32px;padding:0 10px;border:1px solid #3b4f68;border-radius:7px;
+  background:#142135;color:#afbdd0;font-size:8px;font-weight:750
+}
+.notification-clear-btn:hover:not(:disabled){border-color:#76505a;background:#28181d;color:#fecaca}
+.notification-clear-btn:disabled{opacity:.42;cursor:not-allowed}
+.notification-panel-info{
+  position:sticky;top:66px;z-index:3;padding:8px 14px;border-bottom:1px solid var(--border-soft);
+  background:#101a29;color:#8b9bad
+}
+.notification-panel-info span,.notification-panel-info small{display:block}
+.notification-panel-info span{font-size:8px;font-weight:800;color:#cbd6e3}
+.notification-panel-info small{margin-top:2px;font-size:7px}
+.notifications-panel ul{padding:6px 13px 13px}
+.notifications-panel li.notification-item{
+  display:grid;grid-template-columns:minmax(0,1fr) 30px;gap:9px;align-items:center
+}
+.notification-copy{min-width:0}
+.notification-delete-btn{
+  width:29px;height:29px;border:1px solid #34485f;border-radius:7px;
+  background:#132033;color:#8597ac;font-size:16px;line-height:1;cursor:pointer
+}
+.notification-delete-btn:hover{border-color:#824652;background:#2b171c;color:#fecaca}
+.notification-empty{padding:24px 4px!important;text-align:center}
+.bell-btn b[hidden]{display:none!important}
+
+
+/* =========================================================
+   CASA SEGURA — PLANO RESIDENCIAL INTERACTIVO
+   Modelado HTML/CSS, sin fotografía de fondo.
+========================================================= */
+.security-house-scene{
+  min-height:520px;
+  background:
+    linear-gradient(rgba(105,130,158,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(105,130,158,.055) 1px,transparent 1px),
+    #07111d;
+  background-size:24px 24px,24px 24px,auto;
+}
+.security-house-transform{width:100%;height:100%}
+.security-house-image.house-floorplan{
+  position:absolute;inset:0;display:block;width:100%;height:100%;
+  background:transparent;pointer-events:none;user-select:none;z-index:1;
+  object-fit:initial;
+}
+.plan-shell{
+  position:absolute;left:4.5%;right:4.5%;top:6%;bottom:7%;
+  border:10px solid #415269;border-radius:5px;
+  background:#b9b4aa;
+  box-shadow:0 22px 48px rgba(0,0,0,.34), inset 0 0 0 2px rgba(255,255,255,.16);
+}
+.plan-room{
+  position:absolute;overflow:hidden;
+  border:5px solid #526178;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),
+    #c9c2b7;
+  background-size:22px 22px;
+  color:#293646;
+}
+.plan-room--bed1{left:0;top:0;width:36%;height:45%}
+.plan-room--bath{left:36%;top:0;width:24%;height:45%;background-color:#c4cdd0}
+.plan-room--bed2{left:60%;top:0;width:40%;height:45%}
+.plan-room--living{left:0;top:45%;width:51%;height:55%;background-color:#d0c5b8}
+.plan-room--kitchen{left:51%;top:45%;width:49%;height:55%;background-color:#c2bdb4}
+.plan-room-head{
+  position:absolute;left:12px;top:10px;z-index:4;padding:6px 8px;
+  border:1px solid rgba(40,55,72,.18);border-radius:7px;
+  background:rgba(242,238,231,.82);box-shadow:0 4px 10px rgba(35,45,55,.08)
+}
+.plan-room-head strong,.plan-room-head small{display:block}
+.plan-room-head strong{font-size:11px;color:#263345}
+.plan-room-head small{margin-top:2px;font-size:7px;color:#667487}
+
+/* mobiliario esquemático */
+.plan-bed{
+  position:absolute;left:20%;right:18%;top:32%;bottom:15%;
+  border:3px solid #667487;border-radius:8px;background:#8795a5;
+  box-shadow:inset 0 0 0 5px rgba(255,255,255,.12)
+}
+.plan-bed::before{
+  content:"";position:absolute;left:7%;right:7%;top:7%;height:24%;
+  border-radius:6px;background:#d8dde2
+}
+.plan-bed i{position:absolute;top:9%;width:35%;height:18%;border-radius:5px;background:#eef1f3}
+.plan-bed i:first-child{left:9%}.plan-bed i:last-child{right:9%}
+.plan-nightstand{position:absolute;bottom:18%;width:10%;height:17%;border:2px solid #695b51;background:#8c7566}
+.plan-nightstand--a{left:7%}.plan-nightstand--b{right:7%}
+.plan-shower{position:absolute;left:8%;top:36%;width:32%;height:45%;border:4px solid #6e8794;background:rgba(117,159,180,.34)}
+.plan-toilet{position:absolute;right:12%;top:38%;width:22%;height:26%;border:3px solid #87949d;border-radius:45% 45% 38% 38%;background:#e3e7e8}
+.plan-sink{position:absolute;right:8%;bottom:9%;width:34%;height:13%;border:3px solid #899399;background:#dce2e3}
+.plan-sofa{
+  position:absolute;left:10%;top:34%;width:45%;height:26%;
+  border:4px solid #6a5e57;border-radius:12px;background:#92847b;
+  box-shadow:inset 0 0 0 7px rgba(255,255,255,.09)
+}
+.plan-coffee-table{position:absolute;left:24%;top:67%;width:25%;height:14%;border:3px solid #705f51;border-radius:50%;background:#9a7b64}
+.plan-tv{position:absolute;right:8%;top:34%;width:8%;height:34%;border:3px solid #384551;background:#596673}
+.plan-counter{position:absolute;border:3px solid #585f63;background:#7b7f80}
+.plan-counter--top{left:8%;right:8%;top:27%;height:13%}
+.plan-counter--right{right:8%;top:27%;bottom:12%;width:12%}
+.plan-island{position:absolute;left:26%;top:57%;width:42%;height:20%;border:3px solid #6f6b63;background:#aaa69c}
+.plan-stove{position:absolute;left:28%;top:29%;width:18%;height:9%;border:2px solid #30373e;background:#4a525a}
+.plan-caption{
+  position:absolute;left:15px;bottom:13px;z-index:3;padding:7px 9px;
+  border:1px solid rgba(148,163,184,.16);border-radius:8px;
+  background:rgba(7,17,29,.84);color:#9eafc2
+}
+.plan-caption strong,.plan-caption span{display:block}
+.plan-caption strong{font-size:9px;color:#e4edf6}.plan-caption span{margin-top:2px;font-size:7px}
+
+/* dispositivos físicos del plano */
+.security-device-layer{z-index:8!important;pointer-events:auto}
+.house-device-object{z-index:9!important;display:block!important;visibility:visible!important;opacity:1!important}
+.house-door-object .door-leaf{
+  border-color:#493224;background:linear-gradient(90deg,#5b3a25,#81573c 45%,#62402c);
+}
+.house-window-object{
+  background:#15314a;border-color:#5c82a8;box-shadow:0 2px 7px rgba(0,0,0,.24)
+}
+.house-window-object .window-pane{
+  background:linear-gradient(135deg,rgba(155,210,235,.82),rgba(65,126,166,.55))
+}
+
+/* posiciones exactas del plano base */
+[data-house-device="door-main"]{left:22%;top:79%;width:7%;height:18%}
+[data-house-device="door-kitchen"]{left:49.2%;top:56%;width:4.5%;height:18%}
+[data-house-device="door-bedroom1"]{left:27%;top:36%;width:4.5%;height:15%}
+[data-house-device="door-bathroom"]{left:47%;top:36%;width:4.2%;height:15%}
+[data-house-device="door-bedroom2"]{left:70%;top:36%;width:4.5%;height:15%}
+
+/* Sala: 2 ventanas */
+[data-house-device="window-living"]{left:9%;top:87%;width:13%;height:6%}
+[data-house-device="window-living-side"]{left:34%;top:87%;width:13%;height:6%}
+
+/* Cocina: 2 ventanas */
+[data-house-device="window-kitchen-front"]{left:58%;top:87%;width:13%;height:6%}
+[data-house-device="window-kitchen-side"]{left:80%;top:87%;width:13%;height:6%}
+
+/* Recámara 1: 2 ventanas */
+[data-house-device="window-bedroom"]{left:8%;top:7%;width:11%;height:6%}
+[data-house-device="window-bedroom1-extra"]{left:22%;top:7%;width:11%;height:6%}
+
+/* Recámara 2: 2 ventanas */
+[data-house-device="window-bedroom2"]{left:65%;top:7%;width:12%;height:6%}
+[data-house-device="window-bedroom2-extra"]{left:81%;top:7%;width:12%;height:6%}
+
+/* Baño: ventana pequeña */
+[data-house-device="window-bathroom"]{left:44%;top:7%;width:8%;height:5%}
+
+/* Cámara de entrada */
+[data-house-device="camera-entry"]{left:30%;top:74%}
+
+@media(max-width:820px){
+  .security-house-scene{min-height:430px}
+  .plan-shell{left:2.5%;right:2.5%}
+}
+@media(max-width:560px){
+  .security-house-scene{min-height:350px}
+  .plan-shell{border-width:6px}
+  .plan-room{border-width:3px}
+  .plan-room-head{left:5px;top:5px;padding:4px 5px}
+  .plan-room-head strong{font-size:8px}.plan-room-head small{display:none}
+}
+
+
+/* =========================================================
+   CASA SEGURA — MODELO ARQUITECTÓNICO 3D WEBGL
+   Escala del modelo: 1 unidad = 1 metro
+========================================================= */
+.security-house-scene{
+  min-height:610px!important;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(37,99,235,.10),transparent 38%),
+    linear-gradient(180deg,#0a1421,#050b12)!important;
+  perspective:none!important;
+  cursor:grab;
+}
+.security-house-scene.is-webgl-dragging{cursor:grabbing}
+#security-house-transform{visibility:hidden!important;pointer-events:none!important}
+.arch3d-canvas{
+  position:absolute;inset:0;width:100%;height:100%;display:block;z-index:20;
+  outline:none;
+}
+.arch3d-cadbar{
+  position:absolute;left:12px;top:12px;z-index:26;
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  padding:7px;border:1px solid rgba(129,153,181,.22);border-radius:9px;
+  background:rgba(5,13,22,.86);backdrop-filter:blur(8px);
+  box-shadow:0 10px 25px rgba(0,0,0,.24)
+}
+.arch3d-cadbar button{
+  min-height:31px;padding:0 9px;border:1px solid #2d4867;border-radius:7px;
+  background:#0c1d30;color:#aebfd1;font-size:8px;font-weight:800
+}
+.arch3d-cadbar button:hover,.arch3d-cadbar button.is-active{
+  border-color:#4f83bd;background:#15365d;color:#e7f2ff
+}
+.arch3d-info{
+  position:absolute;right:12px;top:12px;z-index:26;
+  min-width:200px;padding:10px 11px;border:1px solid rgba(129,153,181,.22);
+  border-radius:9px;background:rgba(5,13,22,.87);backdrop-filter:blur(8px);
+  box-shadow:0 10px 25px rgba(0,0,0,.24)
+}
+.arch3d-info strong,.arch3d-info span{display:block}
+.arch3d-info strong{font-size:9px;color:#e5eef8;letter-spacing:.04em}
+.arch3d-info span{margin-top:4px;color:#8297ad;font-size:7px;line-height:1.45}
+.arch3d-scale{
+  position:absolute;left:12px;bottom:12px;z-index:26;padding:8px 10px;
+  border:1px solid rgba(129,153,181,.18);border-radius:8px;
+  background:rgba(5,13,22,.82);color:#8fa4b9;font-size:7px
+}
+.arch3d-scale b{color:#d5e4f2}
+.arch3d-legend{
+  position:absolute;right:12px;bottom:12px;z-index:26;display:flex;gap:10px;
+  padding:8px 10px;border:1px solid rgba(129,153,181,.18);border-radius:8px;
+  background:rgba(5,13,22,.82);color:#8fa4b9;font-size:7px
+}
+.arch3d-legend span{display:flex;align-items:center;gap:5px}
+.arch3d-legend i{width:7px;height:7px;border-radius:50%}
+.arch3d-legend .ok{background:#22c55e}.arch3d-legend .open{background:#f59e0b}.arch3d-legend .alarm{background:#dc2626}
+.arch3d-fallback{
+  position:absolute;inset:0;z-index:25;display:grid;place-items:center;padding:30px;
+  background:#07111d;color:#a7b5c6;text-align:center;font-size:10px;line-height:1.6
+}
+@media(max-width:820px){
+  .security-house-scene{min-height:520px!important}
+  .arch3d-info{min-width:155px}
+}
+@media(max-width:560px){
+  .security-house-scene{min-height:430px!important}
+  .arch3d-info{display:none}
+  .arch3d-legend{display:none}
+  .arch3d-cadbar{right:12px}
+}
+
+
+/* =========================================================
+   SELECTOR DE DEMO / CASA PRINCIPAL
+========================================================= */
+.profile-screen{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(37,99,235,.12),transparent 32%),
+    radial-gradient(circle at 80% 70%,rgba(14,165,233,.07),transparent 28%),
+    #07111d;
+}
+.profile-shell{
+  width:min(720px,96vw);padding:26px;border:1px solid #263b53;border-radius:18px;
+  background:linear-gradient(180deg,#0d1a2b,#091421);box-shadow:0 28px 80px rgba(0,0,0,.42)
+}
+.profile-brand{display:flex;align-items:center;gap:11px;padding-bottom:18px;border-bottom:1px solid #22354a}
+.profile-brand .brand-mark{width:44px;height:44px}
+.profile-brand strong,.profile-brand small{display:block}.profile-brand strong{font-size:15px}.profile-brand small{margin-top:2px;color:#7f94a9;font-size:8px}
+.profile-heading{padding:22px 0 10px}.profile-heading h1{margin:6px 0 7px;font-size:26px}.profile-heading>p:last-child{margin:0;color:#8ba0b5;font-size:10px}
+.profile-content{display:grid;gap:10px;margin-top:12px}
+.profile-card{
+  width:100%;min-height:92px;padding:13px 15px;display:grid;grid-template-columns:50px minmax(0,1fr) auto;
+  align-items:center;gap:12px;border:1px solid #29445f;border-radius:12px;background:#0c1c2d;color:#edf5ff;text-align:left;
+  transition:.16s ease
+}
+.profile-card:hover{transform:translateY(-1px);border-color:#3978ae;background:#10243a}
+.profile-card--primary{border-color:#286fba;background:linear-gradient(90deg,#102845,#0d2034)}
+.profile-card__icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid #315577;border-radius:10px;background:#112941;color:#8fc5f4;font-size:21px}
+.profile-card strong,.profile-card small{display:block}.profile-card strong{font-size:12px}.profile-card small{margin-top:4px;color:#869db3;font-size:8px;line-height:1.5}
+.profile-card b{padding:7px 9px;border-radius:7px;background:#142d47;color:#9ecaf0;font-size:8px}
+.profile-foot{display:block;margin-top:13px;color:#61788d;text-align:center;font-size:7px}
+.profile-switch-button{
+  min-height:38px;padding:0 10px;display:flex;align-items:center;gap:6px;border:1px solid #294861;border-radius:8px;
+  background:#0d2236;color:#b8d0e4
+}
+.profile-switch-button span{color:#79baf0}.profile-switch-button b{font-size:8px}
+@media(max-width:620px){
+  .profile-shell{padding:18px}.profile-card{grid-template-columns:42px minmax(0,1fr)}.profile-card>b{display:none}
+  .profile-heading h1{font-size:22px}
+}
+
+
+/* =========================================================
+   RECORRIDO DINÁMICO DESDE EL CAD
+========================================================= */
+.walk-actions{align-items:stretch}
+.walk-dynamic-destinations{
+  display:flex;gap:6px;flex-wrap:wrap;align-items:stretch
+}
+.walk-destination-button,.walk-exterior-button{
+  min-height:38px;padding:6px 10px;border:1px solid #2d4058;border-radius:8px;
+  background:#111e2e;color:#afbdcc;text-align:left
+}
+.walk-destination-button strong,.walk-destination-button small{display:block}
+.walk-destination-button strong{font-size:8px}.walk-destination-button small{margin-top:2px;color:#657b91;font-size:6px}
+.walk-destination-button:hover,.walk-exterior-button:hover{
+  border-color:#4773a0;background:#152941;color:#e6eef7
+}
+.walk-destination-empty{
+  display:inline-flex;align-items:center;padding:0 8px;color:#718499;font-size:8px
+}
+
+
+.home-cad-passage-threshold{
+  stroke:#4bb9ae;
+  stroke-width:5;
+  stroke-dasharray:8 7;
+  stroke-linecap:round;
+  opacity:.7
+}

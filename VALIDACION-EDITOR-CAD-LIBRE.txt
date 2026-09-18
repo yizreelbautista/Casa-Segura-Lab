@@ -1,0 +1,15 @@
+CASA SEGURA — EDITOR CAD LIBRE
+==============================
+JavaScript: OK
+Referencias: OK
+Drag engine: OK
+Snap engine: OK
+Opening editor: OK
+Structure engine: OK
+Roof engine: OK
+Resize handles: OK
+Openings draggable: OK
+Roof plan consumed by 3D: OK
+Independent slabs: OK
+Profile manager preserved: OK
+Siren preserved: OK

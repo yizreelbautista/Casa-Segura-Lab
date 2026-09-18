@@ -1,0 +1,11 @@
+CASA SEGURA — TECHO REAL CORREGIDO EN CÓDIGO
+============================================
+JavaScript: OK
+Faldón trasero sube hacia cumbrera: OK
+Faldón frontal sube hacia cumbrera: OK
+Cumbrera: OK
+Fascia: OK
+Canaletas: OK
+Bajante: OK
+Teja geométrica: OK
+Exterior cerrado: OK

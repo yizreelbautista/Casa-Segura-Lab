@@ -1,0 +1,184 @@
+/* =========================================================
+   CASA SEGURA — EDITOR CAD INTEGRADO
+========================================================= */
+.cad-app-grid{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:12px}
+.cad-main-card,.cad-side-card{padding:18px}
+.cad-toolbar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.cad-toolbar select{max-width:210px}
+.cad-stage{
+  height:620px;overflow:hidden;border:1px solid var(--border);border-radius:13px;
+  background:
+    linear-gradient(rgba(148,163,184,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(148,163,184,.04) 1px,transparent 1px),
+    #09121e;
+  background-size:28px 28px
+}
+.cad-stage svg{width:100%;height:100%;display:block}
+.cad-grid-line{stroke:#1b2e42;stroke-width:1}
+.cad-room{fill:#c6beb2;stroke:#56697f;stroke-width:7;cursor:pointer}
+.cad-room:hover,.cad-room.is-selected{stroke:#2f95ef;filter:drop-shadow(0 0 8px rgba(47,149,239,.32))}
+.cad-room-name{fill:#28394b;font:800 18px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none}
+.cad-room-size{fill:#65778a;font:700 10px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none}
+.cad-symbol{cursor:default}
+.cad-door-line{stroke:#79533a;stroke-width:13;stroke-linecap:round}
+.cad-door-arc{fill:none;stroke:#7f8b9b;stroke-width:2;stroke-dasharray:5 5}
+.cad-window-shape{fill:#315a7b;stroke:#83a7c6;stroke-width:3}
+.cad-window-mid{stroke:#c0d6e7;stroke-width:2}
+.cad-camera-body{fill:#324c69;stroke:#7d9abd;stroke-width:2}
+.cad-camera-lens{fill:#d0e3f4}
+.cad-prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cad-side-card .btn{margin-top:8px}
+.cad-info{
+  margin-top:14px;padding:10px;border:1px solid #304861;border-radius:9px;
+  background:#0f1b2b;color:#90a1b4;font-size:8px;line-height:1.55
+}
+.cad-device-list{display:grid;gap:7px;margin-top:12px}
+.cad-device-row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;
+  padding:8px;border:1px solid var(--border-soft);border-radius:8px;background:#0f1b2b
+}
+.cad-device-row strong,.cad-device-row small{display:block}
+.cad-device-row strong{font-size:8px}.cad-device-row small{margin-top:2px;color:var(--muted);font-size:7px}
+@media(max-width:1050px){.cad-app-grid{grid-template-columns:1fr}.cad-stage{height:520px}}
+
+
+/* =========================================================
+   MI VIVIENDA — PLANO CAD VIVO
+   Reemplaza la imagen estática por el modelo generado.
+========================================================= */
+.home-cad-live{margin-top:14px}
+.home-cad-toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 12px;border:1px solid #2a3e55;border-bottom:0;border-radius:11px 11px 0 0;
+  background:#0e1a2a
+}
+.home-cad-toolbar>div{min-width:0}.home-cad-toolbar small{display:block;margin-top:4px;color:#7f90a5;font-size:8px}
+.home-cad-badge{display:inline-flex;padding:5px 8px;border:1px solid #365987;border-radius:999px;background:#102744;color:#a9c7ff;font-size:8px;font-weight:900;letter-spacing:.08em}
+.home-cad-stage{
+  position:relative;height:580px;overflow:hidden;border:1px solid #2a3e55;border-radius:0 0 12px 12px;
+  background:
+    linear-gradient(rgba(105,130,158,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(105,130,158,.055) 1px,transparent 1px),
+    radial-gradient(circle at 50% 40%,rgba(37,99,235,.07),transparent 42%),
+    #07111d;
+  background-size:24px 24px,24px 24px,auto,auto
+}
+.home-cad-stage svg{width:100%;height:100%;display:block}
+.home-cad-floor{stroke:#536274;stroke-width:2}
+.home-cad-floor.sala{fill:#d5ccbe}.home-cad-floor.cocina{fill:#c8c4bb}.home-cad-floor.recamara{fill:#d2c7bd}.home-cad-floor.bano{fill:#c6d0d3}.home-cad-floor.other{fill:#ccc6bb}
+.home-cad-wall{stroke:#334357;stroke-width:15;stroke-linecap:square}
+.home-cad-wall-inner{stroke:#526072;stroke-width:7;stroke-linecap:square}
+.home-cad-room-name{fill:#354153;font:800 16px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none}
+.home-cad-room-size{fill:#687487;font:600 10px "Segoe UI",sans-serif;text-anchor:middle;pointer-events:none}
+.home-cad-door{cursor:pointer}
+.home-cad-door-frame{stroke:#29394c;stroke-width:12}
+.home-cad-door-leaf{stroke:#745845;stroke-width:12;stroke-linecap:round;transition:.18s ease}
+.home-cad-door-arc{fill:none;stroke:#8490a0;stroke-width:2;stroke-dasharray:5 6}
+.home-cad-door-status{fill:#16a34a;stroke:#f8fafc;stroke-width:2}
+.home-cad-door.is-open .home-cad-door-leaf{stroke:#d18a2e}
+.home-cad-door.is-open .home-cad-door-status{fill:#f59e0b}
+.home-cad-door.is-alarm .home-cad-door-leaf{stroke:#c54854}
+.home-cad-door.is-alarm .home-cad-door-status{fill:#dc2626}
+.home-cad-window{cursor:pointer}
+.home-cad-window-frame{fill:#27405b;stroke:#516f91;stroke-width:4}
+.home-cad-window-glass{fill:#85aeca;fill-opacity:.6;stroke:#b3d1e3;stroke-width:2}
+.home-cad-window-mid{stroke:#b9d4e4;stroke-width:2}
+.home-cad-window-status{fill:#16a34a;stroke:#f8fafc;stroke-width:2}
+.home-cad-window.is-open .home-cad-window-frame{fill:#5f4a1f;stroke:#d39a33}
+.home-cad-window.is-open .home-cad-window-status{fill:#f59e0b}
+.home-cad-window.is-alarm .home-cad-window-frame{fill:#4b2228;stroke:#c54854}
+.home-cad-window.is-alarm .home-cad-window-status{fill:#dc2626}
+.home-cad-camera{cursor:pointer}
+.home-cad-camera-body{fill:#334c6d;stroke:#6b8eba;stroke-width:3}
+.home-cad-camera-lens{fill:#b5d1ef}
+.home-cad-camera-arm{stroke:#445b76;stroke-width:5;stroke-linecap:round}
+.home-cad-camera.is-active .home-cad-camera-body{fill:#5a2229;stroke:#db6570}
+.home-cad-furniture{fill:#75675d;stroke:#4f453e;stroke-width:2;opacity:.9}
+.home-cad-furniture-light{fill:#b9afa4;stroke:#80766e;stroke-width:2;opacity:.9}
+.home-cad-bed{fill:#8390a1;stroke:#596474;stroke-width:2}
+.home-cad-counter{fill:#747a7c;stroke:#4d5355;stroke-width:2}
+.home-cad-water{fill:#7397ad;opacity:.55}
+.home-cad-legend{
+  position:absolute;left:12px;bottom:12px;display:flex;gap:12px;flex-wrap:wrap;
+  padding:7px 9px;border:1px solid rgba(148,163,184,.15);border-radius:8px;
+  background:rgba(7,17,29,.88);color:#8999ac;font-size:8px;pointer-events:none
+}
+.home-cad-legend span{display:flex;align-items:center;gap:5px}.home-cad-legend i{width:13px;height:8px;display:inline-block}
+.home-cad-legend i.door{border-bottom:4px solid #745845}.home-cad-legend i.window{border:2px solid #6c91b8;background:#345a77}.home-cad-legend i.camera{width:9px;height:9px;border-radius:50%;background:#7da0c9}
+@media(max-width:800px){.home-cad-stage{height:470px}.home-cad-toolbar{align-items:flex-start;flex-direction:column}}
+@media(max-width:520px){.home-cad-stage{height:380px}.home-cad-toolbar .btn{width:100%}}
+
+
+/* =========================================================
+   EDITOR CAD LIBRE — DRAG / RESIZE / SNAP
+========================================================= */
+.cad-stage{position:relative}
+.cad-stage svg{touch-action:none;user-select:none}
+.cad-stage-help{
+  position:absolute;left:12px;bottom:12px;z-index:4;max-width:620px;padding:7px 9px;
+  border:1px solid rgba(148,163,184,.14);border-radius:7px;background:rgba(6,14,24,.88);
+  color:#7f91a7;font-size:8px;pointer-events:none
+}
+.cad-drag-status{
+  margin-top:8px;padding:8px 10px;border:1px solid #263b50;border-radius:8px;background:#0d1928;
+  color:#8fa6bd;font-size:8px;font-weight:700
+}
+.cad-room{cursor:move}
+.cad-room.is-selected{stroke-width:9}
+.cad-resize-handle{
+  fill:#d9ecff;stroke:#246fb1;stroke-width:3;cursor:nwse-resize;
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,.28))
+}
+.cad-resize-handle[data-resize-handle="ne"],.cad-resize-handle[data-resize-handle="sw"]{cursor:nesw-resize}
+.cad-symbol{cursor:grab}
+.cad-symbol.is-selected{filter:drop-shadow(0 0 7px rgba(84,164,255,.75))}
+.cad-symbol.is-selected .cad-window-shape,.cad-symbol.is-snapped .cad-window-shape{stroke:#4aa8ff;stroke-width:5}
+.cad-symbol.is-selected .cad-camera-body,.cad-symbol.is-snapped .cad-camera-body{stroke:#4aa8ff;stroke-width:4}
+.cad-symbol.is-selected .cad-door-line,.cad-symbol.is-snapped .cad-door-line{stroke:#b3794e;stroke-width:16}
+.cad-symbol.is-dragging{cursor:grabbing;opacity:.92}
+.cad-snap-toggle{min-width:78px}.cad-snap-toggle.is-active{border-color:#3474a9;background:#153252;color:#bfe1ff}
+.cad-structure-status{
+  display:inline-flex;min-height:30px;padding:0 9px;align-items:center;border:1px solid #2b4158;border-radius:7px;
+  background:#0e1a29;color:#8399af;font-size:8px;font-weight:800
+}
+.cad-device-row.is-selected{border-color:#356b9d;background:#12243a}
+.cad-device-row>div{cursor:pointer}
+.cad-selection-title{display:flex;align-items:center;gap:8px;margin:10px 0}
+.cad-selection-title strong{font-size:10px}
+.cad-selection-chip{
+  display:inline-flex;padding:4px 7px;border:1px solid #37658f;border-radius:999px;background:#10263d;
+  color:#9dccf4;font-size:7px;font-weight:900;text-transform:uppercase
+}
+.cad-range-value{display:block;margin-top:4px;color:#7e96ae;font-size:8px;text-align:right}
+.cad-info--accent{border-color:#315a7b;background:#0d2134;color:#9fbbd2}
+
+
+/* APERTURA LIBRE / PASILLO */
+.btn--passage{
+  border-color:#3a7f79!important;
+  background:#11302f!important;
+  color:#b8ece5!important
+}
+.cad-passage-line{
+  stroke:#50c9bd;
+  stroke-width:9;
+  stroke-linecap:round;
+  stroke-dasharray:5 6;
+  pointer-events:stroke
+}
+.cad-passage-label{
+  fill:#72d6cc;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.7px;
+  pointer-events:none
+}
+.cad-info--passage{
+  border-color:#2f6c67!important;
+  background:#0e2828!important;
+  color:#9edbd5!important
+}
+.cad-symbol.is-selected .cad-passage-line{
+  stroke:#9af4ea;
+  filter:drop-shadow(0 0 5px rgba(80,201,189,.55))
+}

@@ -1,0 +1,8 @@
+CASA SEGURA — VALIDACIÓN VISUAL
+==============================
+JavaScript: OK
+Muros segmentados por huecos: SÍ
+Puertas con marco/hoja/perilla: SÍ
+Ventanas con marco/cristal/montante: SÍ
+Cámaras 3D: SÍ
+Vista perspectiva reajustada: SÍ
